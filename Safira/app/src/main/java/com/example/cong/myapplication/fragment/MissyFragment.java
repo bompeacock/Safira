@@ -27,6 +27,8 @@ public class MissyFragment extends Fragment {
 
     Context context;
 
+    GridLayoutManager manager;
+
     public MissyFragment(Context context) {
         this.context = context;
     }
@@ -45,7 +47,7 @@ public class MissyFragment extends Fragment {
         MissyItemAdapter missyItemAdapter = new MissyItemAdapter();
         rvMissy.setAdapter(missyItemAdapter);
         rvMissy.setHasFixedSize(true);
-        GridLayoutManager manager = new GridLayoutManager(context,2);
+        manager = new GridLayoutManager(context,2);
 //        manager.getSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 //            @Override
 //            public int getSpanSize(int position) {
