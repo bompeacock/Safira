@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new MissyFragment(this), "MISSY");
         adapter.addFragment(new MissyFragment(this), "PLUS");
         adapter.addFragment(new MissyFragment(this), "MEN");
+        adapter.addFragment(new MissyFragment(this), "ACCESSORIES");
         viewPager.setAdapter(adapter);
     }
 
