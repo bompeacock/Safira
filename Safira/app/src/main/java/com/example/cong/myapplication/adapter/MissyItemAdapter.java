@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,8 +57,13 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             final Product product = listProduct.get(position-1);
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             myViewHolder.txtProductName.setText(product.getProductName());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                }
+            });
         }
-
     }
 
     @Override

@@ -54,6 +54,7 @@ public class MissyFragment extends Fragment {
 //                return 0;
 //            }
 //        });
+
         rvMissy.setLayoutManager(manager);
 
         return view;
