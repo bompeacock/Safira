@@ -19,6 +19,5 @@ public class Pick_product extends AppCompatActivity {
         verticalInfiniteCycleViewPager.setAdapter(new VerticalPagerAdapter(this));
 
         verticalInfiniteCycleViewPager.setScrollDuration(1000);
-        verticalInfiniteCycleViewPager.startAutoScroll(true);
     }
 }

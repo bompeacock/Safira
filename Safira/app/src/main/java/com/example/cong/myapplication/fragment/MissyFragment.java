@@ -44,7 +44,7 @@ public class MissyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_missy,container,false);
         ButterKnife.bind(this,view);
-        MissyItemAdapter missyItemAdapter = new MissyItemAdapter();
+        MissyItemAdapter missyItemAdapter = new MissyItemAdapter(this.getContext());
         rvMissy.setAdapter(missyItemAdapter);
         rvMissy.setHasFixedSize(true);
         manager = new GridLayoutManager(context,2);
