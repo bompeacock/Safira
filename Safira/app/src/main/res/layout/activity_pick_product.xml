@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_pick_product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.cong.myapplication.activity.Pick_product">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="my product"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.Toolbar>
         <com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager
             android:id="@+id/vicvp"
+            android:layout_margin="4dp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,4 +26,4 @@
             app:icvp_min_page_scale="0.7"
             app:icvp_min_page_scale_offset="-20dp"
             app:icvp_scroll_duration="600"/>
-</FrameLayout>
+</LinearLayout>
