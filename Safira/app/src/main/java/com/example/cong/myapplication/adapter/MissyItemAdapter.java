@@ -102,6 +102,7 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         public MyHeaderViewHolder(View view) {
             super(view);
+
         }
     }
 }
