@@ -46,10 +46,10 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == TYPE_ITEM){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.missy_item,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_missy,parent,false);
             return new MyViewHolder(view);
         }else if(viewType == TYPE_HEADER){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_item,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header,parent,false);
             return new MyHeaderViewHolder(view);
         }
         return null;

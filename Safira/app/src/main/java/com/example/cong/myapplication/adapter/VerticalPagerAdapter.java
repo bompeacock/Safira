@@ -70,6 +70,7 @@ public class VerticalPagerAdapter extends PagerAdapter {
     public void destroyItem(final ViewGroup container, final int position, final Object object) {
         container.removeView((View) object);
     }
+
 }
 
 

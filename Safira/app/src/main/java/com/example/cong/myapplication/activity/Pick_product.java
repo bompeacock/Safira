@@ -23,7 +23,6 @@ public class Pick_product extends AppCompatActivity {
         final VerticalInfiniteCycleViewPager verticalInfiniteCycleViewPager =
                 (VerticalInfiniteCycleViewPager) findViewById(R.id.vicvp);
         verticalInfiniteCycleViewPager.setAdapter(new VerticalPagerAdapter(this));
-
         verticalInfiniteCycleViewPager.setScrollDuration(1000);
     }
 }
