@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.cong.myapplication.R;
-import com.example.cong.myapplication.adapter.VerticalPagerAdapter;
+import com.example.cong.myapplication.adapter.PickProductAdapter;
 import com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager;
 
 public class Pick_product extends AppCompatActivity {
@@ -22,7 +22,7 @@ public class Pick_product extends AppCompatActivity {
 
         final VerticalInfiniteCycleViewPager verticalInfiniteCycleViewPager =
                 (VerticalInfiniteCycleViewPager) findViewById(R.id.vicvp);
-        verticalInfiniteCycleViewPager.setAdapter(new VerticalPagerAdapter(this));
+        verticalInfiniteCycleViewPager.setAdapter(new PickProductAdapter(this));
         verticalInfiniteCycleViewPager.setScrollDuration(1000);
     }
 }

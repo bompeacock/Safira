@@ -16,7 +16,7 @@ import com.example.cong.myapplication.utils.Utils;
 /**
  * Created by CongNV4 on 5/21/2017.
  */
-public class VerticalPagerAdapter extends PagerAdapter {
+public class PickProductAdapter extends PagerAdapter {
     private final Utils.LibraryObject[] TWO_WAY_LIBRARIES = new Utils.LibraryObject[]{
             new Utils.LibraryObject(
                     R.drawable.a,
@@ -35,7 +35,7 @@ public class VerticalPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater mLayoutInflater;
 
-    public VerticalPagerAdapter(final Context context) {
+    public PickProductAdapter(final Context context) {
         mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
