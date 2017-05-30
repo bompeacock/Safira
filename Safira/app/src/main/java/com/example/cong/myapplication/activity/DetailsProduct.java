@@ -2,6 +2,7 @@ package com.example.cong.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.ColorAdapter;
+import com.example.cong.myapplication.adapter.MissyItemAdapter;
 import com.example.cong.myapplication.adapter.PickDetailsImageProductAdapter;
 import com.example.cong.myapplication.model.Color;
 import com.squareup.picasso.Picasso;
@@ -30,6 +32,9 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.rvRecommend)
+    RecyclerView rvRecommend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,12 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
         colors.add(new Color("","http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
         ColorAdapter colorAdapter = new ColorAdapter(this,colors);
         rvImgColor.setAdapter(colorAdapter);
+
+        //fill data rv recommandation
+        MissyItemAdapter missyItemAdapter  = new MissyItemAdapter(this);
+        rvRecommend.setAdapter(missyItemAdapter);
+        GridLayoutManager manager  = new GridLayoutManager(this,2);
+        rvRecommend.setLayoutManager(manager);
     }
 
     @Override

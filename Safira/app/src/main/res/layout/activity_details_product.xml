@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="280dp"
                     android:scaleType="fitCenter"
-                    tools:src="@drawable/a"/>
+                    android:src="@drawable/a"/>
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvImageProduct"
                     android:layout_width="match_parent"
@@ -159,6 +159,29 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="BUY NOW"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_layout">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You May Also Like"
+                    android:layout_gravity="center"/>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rvRecommend">
+
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

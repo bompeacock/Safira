@@ -15,7 +15,9 @@ import android.view.MenuItem;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.TabLayoutAdapter;
+import com.example.cong.myapplication.fragment.MenFragment;
 import com.example.cong.myapplication.fragment.MissyFragment;
+import com.example.cong.myapplication.fragment.SafiraFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MissyFragment(this), "SAFIRA");
-        adapter.addFragment(new MissyFragment(this), "MISSY");
+        adapter.addFragment(new SafiraFragment(this), "SAFIRA");
+        adapter.addFragment(new MenFragment(this), "MISSY");
         adapter.addFragment(new MissyFragment(this), "PLUS");
-        adapter.addFragment(new MissyFragment(this), "MEN");
+        adapter.addFragment(new MenFragment(this), "MEN");
         adapter.addFragment(new MissyFragment(this), "ACCESSORIES");
         viewPager.setAdapter(adapter);
     }
