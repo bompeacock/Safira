@@ -48,12 +48,7 @@ public class SafiraFragment extends Fragment{
         rvMissy.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvMissy.setLayoutManager(llm);
-//        manager.getSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return 0;
-//            }
-//        });
+
 
         rvMissy.setAdapter(safiraAdapter);
 
