@@ -5,5 +5,10 @@ package com.example.cong.myapplication.utils;
  */
 
 public class Constant {
-    public static String BASE_URL = "https://mocksvc.mulesoft.com/mocks/52e4552a-cbb7-40e3-95d3-4957b0f4e9ea";
+    public static String BASE_URL = "http://localhost:8080/test/";
+
+
+
+
+
 }

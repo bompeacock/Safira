@@ -22,7 +22,17 @@ public class RetrofitUtils {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
-    //if must have a key to access
+
+
+//    public static Retrofit getRetrofit(){
+//        return new Retrofit.Builder()
+//                .baseUrl(Constant.BASE_URL_TEST)
+//                .client(client())
+//                .addConverterFactory(GsonConverterFactory.create()) // convert xml to json object purpose
+//                .build();
+//    }
+//
+//    //if must have a key to access
 //    private static OkHttpClient client(){
 //        return new OkHttpClient.Builder()
 //                .addInterceptor(apiKeyInterceptor())

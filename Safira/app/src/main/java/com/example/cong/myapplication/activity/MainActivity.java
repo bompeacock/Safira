@@ -12,12 +12,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.TabLayoutAdapter;
+import com.example.cong.myapplication.api.IRequest;
 import com.example.cong.myapplication.fragment.MenFragment;
 import com.example.cong.myapplication.fragment.MissyFragment;
 import com.example.cong.myapplication.fragment.SafiraFragment;
+import com.example.cong.myapplication.model.ResultsCollection;
+import com.example.cong.myapplication.utils.RetrofitUtils;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
