@@ -15,11 +15,7 @@ public  class ResultsCollection {
         return type;
     }
 }
-class TypeBanner extends ResultsCollection{
-    @SerializedName("data")
-    private String a;
 
-}
 class TypeCarousel extends  ResultsCollection{
     @SerializedName("data")
     private int a;

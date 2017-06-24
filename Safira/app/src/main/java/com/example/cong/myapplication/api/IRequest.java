@@ -12,7 +12,7 @@ import retrofit2.http.GET;
  */
 
 public interface IRequest {
-    @GET("data.json")
+    @GET("product/complexAPI")
     Call<List<ResultsCollection>> listCollection();
 
 

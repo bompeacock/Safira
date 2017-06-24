@@ -16,6 +16,7 @@ import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.SafiraAdapter;
 import com.example.cong.myapplication.api.IRequest;
 import com.example.cong.myapplication.model.ResultsCollection;
+import com.example.cong.myapplication.model.TypeBanner;
 import com.example.cong.myapplication.utils.RetrofitUtils;
 
 import java.util.List;
@@ -47,13 +48,15 @@ public class SafiraFragment extends Fragment{
         super.onCreate(savedInstanceState);
 
         //test Retrofit
-        IRequest request  = RetrofitUtils.getNormally().create(IRequest.class);
+        IRequest request  = RetrofitUtils.getSpecifically().create(IRequest.class);
 
         request.listCollection().enqueue(new Callback<List<ResultsCollection>>() {
             @Override
             public void onResponse(Call<List<ResultsCollection>> call, Response<List<ResultsCollection>> response) {
                 if(response!=null){
-                    Toast.makeText(context,response.body().toString()+"ok",Toast.LENGTH_LONG).show();
+                    TypeBanner a = (TypeBanner) response.body().get(0);
+                    Toast.makeText(context,a.getA()+"ok",Toast.LENGTH_LONG).show();
+
                 }else Toast.makeText(context,"nothing here",Toast.LENGTH_LONG).show();
             }
 
