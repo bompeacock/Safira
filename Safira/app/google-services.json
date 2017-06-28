@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "871474245833",
+    "firebase_url": "https://tarifa-96970.firebaseio.com",
+    "project_id": "tarifa-96970",
+    "storage_bucket": "tarifa-96970.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871474245833:android:88de5455ab016401",
+        "android_client_info": {
+          "package_name": "com.example.cong.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871474245833-sv80jh5764dijiv7979hi21o6o47tep5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFn-xnIm3kk4wrtEYAO_-3T4PuIO1h6_M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
