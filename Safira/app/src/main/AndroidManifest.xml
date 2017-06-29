@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DetailsProduct" />
-        <activity android:name=".activity.Pick_product"></activity>
+        <activity android:name=".activity.Pick_product" />
+        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

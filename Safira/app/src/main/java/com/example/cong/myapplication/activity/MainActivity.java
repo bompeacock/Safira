@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -16,18 +17,10 @@ import android.widget.Toast;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.TabLayoutAdapter;
-import com.example.cong.myapplication.api.IRequest;
 import com.example.cong.myapplication.fragment.MenFragment;
 import com.example.cong.myapplication.fragment.MissyFragment;
 import com.example.cong.myapplication.fragment.SafiraFragment;
-import com.example.cong.myapplication.model.ResultsCollection;
-import com.example.cong.myapplication.utils.RetrofitUtils;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,7 +79,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
+        Intent intent = getIntent();
+        GoogleSignInAccount mGoogleSignInAccount = (GoogleSignInAccount) intent.getSerializableExtra("signInAccount");
+        if(mGoogleSignInAccount!=null){
+            Toast.makeText(this,mGoogleSignInAccount.getIdToken(),Toast.LENGTH_LONG).show();
+        }
+        Toast.makeText(this,"FAiD",Toast.LENGTH_LONG).show();
     }
 
     private void setupViewPager(ViewPager viewPager) {
