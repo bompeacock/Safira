@@ -13,14 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.TabLayoutAdapter;
 import com.example.cong.myapplication.fragment.MenFragment;
 import com.example.cong.myapplication.fragment.MissyFragment;
 import com.example.cong.myapplication.fragment.SafiraFragment;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 //    @BindView(R.id.drawerlayout)
 //    FlowingDrawer mDrawer;
     private DrawerLayout mDrawerLayout;
+
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +81,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        Intent intent = getIntent();
-        GoogleSignInAccount mGoogleSignInAccount = (GoogleSignInAccount) intent.getSerializableExtra("signInAccount");
-        if(mGoogleSignInAccount!=null){
-            Toast.makeText(this,mGoogleSignInAccount.getIdToken(),Toast.LENGTH_LONG).show();
-        }
-        Toast.makeText(this,"FAiD",Toast.LENGTH_LONG).show();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        setEvent();
+
+    }
+
+    private void setEvent() {
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -105,5 +111,30 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.mnCart:
 
+                signOut();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void signOut() {
+        mAuth.signOut();
+        Intent intent = new Intent(this, Login.class);
+        intent.putExtra("logout", true);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

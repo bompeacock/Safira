@@ -10,6 +10,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 public class LoginPresenter {
     private ILoginView mlLoginView;
 
+
+
     public LoginPresenter(ILoginView mlLoginView) {
         this.mlLoginView = mlLoginView;
     }
