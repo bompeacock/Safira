@@ -53,9 +53,7 @@ public class Login extends AppCompatActivity implements ILoginView{
         setEvents();
 
         boolean logout = getIntent().getBooleanExtra("logout",false);
-        if(logout){
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-        }
+
     }
 
     private void setEvents() {
@@ -64,6 +62,9 @@ public class Login extends AppCompatActivity implements ILoginView{
             public void onClick(View view) {
 
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+                    mGoogleApiClient.clearDefaultAccountAndReconnect();
+                }
                 startActivityForResult(signInIntent, RC_SIGN_IN);
 
             }
@@ -75,7 +76,6 @@ public class Login extends AppCompatActivity implements ILoginView{
                     if(firebaseAuth.getCurrentUser()!=null){
                         Intent intent = new Intent(Login.this,MainActivity.class);
                         startActivity(intent);
-                        finish();
                     }
             }
         };
@@ -124,26 +124,7 @@ public class Login extends AppCompatActivity implements ILoginView{
         mAuth.addAuthStateListener(mAuthStateListener);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        Toast.makeText(this,"on post resume",Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Toast.makeText(this,"restart",Toast.LENGTH_LONG).show();
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

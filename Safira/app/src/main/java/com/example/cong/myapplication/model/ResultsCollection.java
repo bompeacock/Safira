@@ -16,12 +16,3 @@ public  class ResultsCollection {
     }
 }
 
-class TypeCarousel extends  ResultsCollection{
-    @SerializedName("data")
-    private int a;
-
-}
-class TypeMixProduct extends ResultsCollection{
-    @SerializedName("data")
-    private double a;
-}

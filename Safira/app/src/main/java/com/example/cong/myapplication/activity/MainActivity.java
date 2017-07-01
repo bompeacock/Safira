@@ -21,19 +21,24 @@ import com.example.cong.myapplication.fragment.MissyFragment;
 import com.example.cong.myapplication.fragment.SafiraFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
-//
-//    @BindView(R.id.tabs)
-//    TabLayout tabLayout;
-//
-//    @BindView(R.id.viewpager)
-//    ViewPager viewPager;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
+
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
 
 //    @BindView(R.id.drawerlayout)
 //    FlowingDrawer mDrawer;
+
+
     private DrawerLayout mDrawerLayout;
 
     private FirebaseAuth mAuth;
@@ -43,15 +48,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+
+        setViews();
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        setEvents();
+
+    }
+
+    private void setViews() {
         // Adding Toolbar to Main screen
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Setting ViewPager for each Tabs
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
         // Create Navigation drawer and inlfate layout
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -81,21 +96,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-        mAuth = FirebaseAuth.getInstance();
-
-        setEvent();
-
     }
 
-    private void setEvent() {
+    private void setEvents() {
 
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SafiraFragment(this), "SAFIRA");
+        adapter.addFragment(new SafiraFragment(this), "COLLECTION");
         adapter.addFragment(new MenFragment(this), "MISSY");
         adapter.addFragment(new MissyFragment(this), "PLUS");
         adapter.addFragment(new MenFragment(this), "MEN");

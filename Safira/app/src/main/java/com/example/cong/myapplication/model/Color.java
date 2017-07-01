@@ -1,16 +1,23 @@
 package com.example.cong.myapplication.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Cong on 27/05/2017.
  */
 
 public class Color {
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("urlImageColor")
     private String url;
 
     public Color(){
     }
-    public Color(String name, String url) {
+    public Color(int id,String name, String url) {
+        this.id = id;
         this.name = name;
         this.url = url;
     }
