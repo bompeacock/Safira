@@ -8,5 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class TypeMixProduct extends ResultsCollection {
     @SerializedName("data")
-    private ProductMix productMix;
+    private ProductMixWithFeature productMix;
+
+    public ProductMixWithFeature getProductMix() {
+        return productMix;
+    }
 }

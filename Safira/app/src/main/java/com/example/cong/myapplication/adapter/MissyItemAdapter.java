@@ -61,7 +61,7 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if(holder instanceof MyViewHolder){
             final Product product = listProduct.get(position-1);
             MyViewHolder myViewHolder = (MyViewHolder) holder;
-            myViewHolder.txtProductName.setText(product.getProductName());
+            myViewHolder.txtProductName.setText(product.getName());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

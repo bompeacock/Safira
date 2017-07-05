@@ -10,6 +10,14 @@ import java.util.List;
 public class ModelProductWithCategory {
     @SerializedName("category")
     private String category;
-    @SerializedName("listProduct")
+    @SerializedName("products")
     private List<Product> listproduct;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public List<Product> getListproduct() {
+        return listproduct;
+    }
 }

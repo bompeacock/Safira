@@ -19,9 +19,9 @@ import java.util.Map;
  */
 
 public class CollectionTypeAdapter implements TypeAdapterFactory {
-    public static int TYPE_BANNER = 1;
-    public static int TYPE_CAROUSEL =2;
-    public static int TYPE_MIX_PRODUCT =3;
+    public final static int TYPE_BANNER = 1;
+    public final static int TYPE_CAROUSEL =2;
+    public final static int TYPE_MIX_PRODUCT =3;
 
     private Map<Integer,TypeAdapter<? extends ResultsCollection>> ADAPTERS = new ArrayMap<>();
     private TypeAdapter<ResultsCollection> baseTypeAdapter;

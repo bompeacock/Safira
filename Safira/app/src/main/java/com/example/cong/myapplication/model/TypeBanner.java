@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class TypeBanner extends ResultsCollection{
     @SerializedName("data")
-    private String a;
+    private Banner banner;
 
-    public String getA() {
-        return a;
+    public Banner getBanner() {
+        return banner;
     }
 }

@@ -22,6 +22,8 @@ public class Color {
         this.url = url;
     }
 
+
+
     public String getName() {
         return name;
     }

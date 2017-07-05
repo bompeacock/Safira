@@ -16,4 +16,12 @@ public class Banner {
         this.id = id;
         this.urlBanner = urlBanner;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUrlBanner() {
+        return urlBanner;
+    }
 }

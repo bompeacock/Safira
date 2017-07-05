@@ -9,4 +9,8 @@ import com.google.gson.annotations.SerializedName;
 public class TypeCarousel extends ResultsCollection{
     @SerializedName("data")
     private ModelProductWithCategory modelProductWithCategory;
+
+    public ModelProductWithCategory getModelProductWithCategory() {
+        return modelProductWithCategory;
+    }
 }

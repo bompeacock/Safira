@@ -59,9 +59,9 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
         //fill data image color
         List<Color> colors = new ArrayList<>();
-        colors.add(new Color("","http://vividlinen.com/images/product_color_box_main/thumb/color_20141114103634_11818.jpg"));
-        colors.add(new Color("","http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
-        colors.add(new Color("","http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
+        colors.add(new Color(1,"","http://vividlinen.com/images/product_color_box_main/thumb/color_20141114103634_11818.jpg"));
+        colors.add(new Color(2,"","http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
+        colors.add(new Color(3,"","http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
         ColorAdapter colorAdapter = new ColorAdapter(this,colors);
         rvImgColor.setAdapter(colorAdapter);
 

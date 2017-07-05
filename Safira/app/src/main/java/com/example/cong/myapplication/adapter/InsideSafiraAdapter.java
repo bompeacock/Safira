@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.model.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,20 +19,10 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
     Context context;
     List<Product> listProduct;
 
-    public InsideSafiraAdapter(Context context) {
+
+    public InsideSafiraAdapter(Context context, List<Product> productList) {
         this.context = context;
-        listProduct = new ArrayList<>();
-        listProduct.add(new Product("product 1"));
-        listProduct.add(new Product("product 2"));
-        listProduct.add(new Product("product 3"));
-        listProduct.add(new Product("product 4"));
-        listProduct.add(new Product("product 5"));
-        listProduct.add(new Product("product 6"));
-        listProduct.add(new Product("product 7"));
-        listProduct.add(new Product("product 8"));
-        listProduct.add(new Product("product 8"));
-        listProduct.add(new Product("product 8"));
-        listProduct.add(new Product("product 8"));
+        this.listProduct = productList;
     }
 
     @Override
