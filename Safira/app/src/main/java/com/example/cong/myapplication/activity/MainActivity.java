@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        viewPager.setOffscreenPageLimit(tabLayout.getTabCount());
+
     }
 
     private void setEvents() {

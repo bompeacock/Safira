@@ -10,6 +10,26 @@ public  class ResultsCollection {
     @SerializedName("type")
     private int type;
 
+    @SerializedName("banner")
+    private Banner banner;
+
+    @SerializedName("carousel")
+    private ModelProductWithCategory modelProductWithCategory;
+
+    @SerializedName("mixProduct")
+    private ProductMixWithFeature productMixWithFeature;
+
+    public Banner getBanner() {
+        return banner;
+    }
+
+    public ModelProductWithCategory getModelProductWithCategory() {
+        return modelProductWithCategory;
+    }
+
+    public ProductMixWithFeature getProductMixWithFeature() {
+        return productMixWithFeature;
+    }
 
     public int getType() {
         return type;

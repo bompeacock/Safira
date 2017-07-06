@@ -14,9 +14,6 @@ import com.example.cong.myapplication.model.ModelProductWithCategory;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ProductMixWithFeature;
 import com.example.cong.myapplication.model.ResultsCollection;
-import com.example.cong.myapplication.model.TypeBanner;
-import com.example.cong.myapplication.model.TypeCarousel;
-import com.example.cong.myapplication.model.TypeMixProduct;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
 
@@ -82,8 +79,8 @@ public class SafiraAdapter extends RecyclerView.Adapter {
     }
 
     private void configMixViewHolder(MixViewHolder mixViewHolder, int position) {
-        TypeMixProduct typeMixProduct = (TypeMixProduct) list.get(position);
-        ProductMixWithFeature productMixWithFeature = typeMixProduct.getProductMix();
+        ResultsCollection typeMixProduct = list.get(position);
+        ProductMixWithFeature productMixWithFeature = typeMixProduct.getProductMixWithFeature();
 
         Picasso.with(context).load(Constant.IMAGE_URL+productMixWithFeature.getImageFix())
                 .placeholder(R.drawable.progress)
@@ -102,7 +99,7 @@ public class SafiraAdapter extends RecyclerView.Adapter {
     }
 
     private void configCarouselViewHolder(CarouselViewHolder carouselViewHolder, int position) {
-        TypeCarousel typeCarousel = (TypeCarousel) list.get(position);
+        ResultsCollection typeCarousel =  list.get(position);
         ModelProductWithCategory modelProductWithCategory = typeCarousel.getModelProductWithCategory();
         List<Product> productList =  modelProductWithCategory.getListproduct();
 
@@ -114,9 +111,9 @@ public class SafiraAdapter extends RecyclerView.Adapter {
     }
 
     private void configBannerViewHolder(BannerViewHolder bannerViewHolder, int position) {
-        TypeBanner typeBanner = (TypeBanner) list.get(position);
+        ResultsCollection typeBanner = list.get(position);
 
-        Picasso.with(context).load(Constant.IMAGE_URL+typeBanner.getBanner())
+        Picasso.with(context).load(Constant.IMAGE_URL+typeBanner.getBanner().getUrlBanner())
                 .placeholder(R.drawable.progress)
                 .into(bannerViewHolder.getImgBanner());
     }
@@ -128,13 +125,7 @@ public class SafiraAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if(list.get(position) instanceof TypeBanner){
-            return CollectionTypeAdapter.TYPE_BANNER;
-        }else
-            if (list.get(position) instanceof TypeCarousel){
-                return CollectionTypeAdapter.TYPE_CAROUSEL;
-            }else
-                return CollectionTypeAdapter.TYPE_MIX_PRODUCT;
+        return list.get(position).getType();
     }
 
     public class CarouselViewHolder extends RecyclerView.ViewHolder {

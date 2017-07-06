@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,6 +35,9 @@ public class SafiraFragment extends Fragment implements ICollectionView{
     @BindView(R.id.pbLoading)
     ProgressBar pbLoading;
 
+    @BindView(R.id.layoutCollection)
+    LinearLayout linearLayout;
+
     Context context;
     ColFragmentPresenter colFragmentPresenter;
 
@@ -46,7 +50,7 @@ public class SafiraFragment extends Fragment implements ICollectionView{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        Toast.makeText(context,"onCreate",Toast.LENGTH_SHORT).show();
     }
 
     @Nullable
@@ -56,20 +60,23 @@ public class SafiraFragment extends Fragment implements ICollectionView{
         ButterKnife.bind(this,view);
 
         colFragmentPresenter.loadComplexData();
-
+        Toast.makeText(context,"onView",Toast.LENGTH_SHORT).show();
         return view;
 
     }
 
     @Override
     public void loadViewsCollection(List<ResultsCollection> listColleciton) {
-        pbLoading.setVisibility(View.INVISIBLE);
 
         SafiraAdapter safiraAdapter = new SafiraAdapter(listColleciton,context);
         rvCollection.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvCollection.setLayoutManager(llm);
         rvCollection.setAdapter(safiraAdapter);
+
+        linearLayout.setVisibility(View.VISIBLE);
+        pbLoading.setVisibility(View.GONE);
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class TypeMixProduct extends ResultsCollection {
     @SerializedName("data")
+    @Expose
     private ProductMixWithFeature productMix;
 
     public ProductMixWithFeature getProductMix() {

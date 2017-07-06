@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class TypeCarousel extends ResultsCollection{
     @SerializedName("data")
+    @Expose
     private ModelProductWithCategory modelProductWithCategory;
 
     public ModelProductWithCategory getModelProductWithCategory() {

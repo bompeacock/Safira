@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,7 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class TypeBanner extends ResultsCollection{
     @SerializedName("data")
+    @Expose
     private Banner banner;
+
 
     public Banner getBanner() {
         return banner;

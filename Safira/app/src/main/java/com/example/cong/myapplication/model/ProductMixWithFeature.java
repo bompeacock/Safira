@@ -14,9 +14,9 @@ public class ProductMixWithFeature {
     private String description;
     @SerializedName("imageMix")
     private String imageFix;
-    @SerializedName("imageFeture1")
+    @SerializedName("imageFeature1")
     private String imageFeature1;
-    @SerializedName("imageFeture2")
+    @SerializedName("imageFeature2")
     private String imageFeature2;
 
     public int getId() {

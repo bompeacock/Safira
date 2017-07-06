@@ -26,28 +26,16 @@
             android:layout_below="@id/imgProduct"
             android:orientation="horizontal"
             android:layout_marginTop="4dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/imgcolor"
-                android:layout_marginRight="2dp"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/imgcolor"
-                android:layout_marginRight="2dp"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/imgcolor"
-                android:layout_marginRight="2dp"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/imgcolor"
-                android:layout_marginRight="2dp"/>
+
+
+            <!--<ImageView-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:src="@drawable/imgcolor"-->
+                <!--android:layout_marginRight="2dp"/>-->
         </LinearLayout>
         <TextView
+            android:id="@+id/txtProductName"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_below="@id/layout"
