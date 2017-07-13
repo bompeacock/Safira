@@ -50,7 +50,7 @@ public class SafiraFragment extends Fragment implements ICollectionView{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toast.makeText(context,"onCreate",Toast.LENGTH_SHORT).show();
+        setReenterTransition(true);
     }
 
     @Nullable
@@ -60,7 +60,6 @@ public class SafiraFragment extends Fragment implements ICollectionView{
         ButterKnife.bind(this,view);
 
         colFragmentPresenter.loadComplexData();
-        Toast.makeText(context,"onView",Toast.LENGTH_SHORT).show();
         return view;
 
     }

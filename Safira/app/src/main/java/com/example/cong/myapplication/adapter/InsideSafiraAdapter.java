@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
@@ -53,19 +52,8 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
 
         List<String> listColor = product.getUrlFeature();
 
-        for(String urlColor : listColor){
-            ImageView  imageView = new ImageView(context);
-            imageView.setMaxWidth(20);
-            imageView.setMaxHeight(20);
-            imageView.layout(0,0,2,0);
-
-            Picasso.with(context)
-                    .load(Constant.IMAGE_URL + urlColor)
-                    .placeholder(R.drawable.progress)
-                    .into(imageView);
-
-            viewHolder.linearLayout.addView(imageView);
-        }
+        ColorMiniAdapter colorAdapter = new ColorMiniAdapter(listColor,context);
+        viewHolder.rvColor.setAdapter(colorAdapter);
 
         viewHolder.txtProductName.setText(product.getName());
 
@@ -77,8 +65,8 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
         return listProduct.size();
     }
     public class InsideSafiraViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.layout)
-        LinearLayout linearLayout;
+        @BindView(R.id.rvColor)
+        RecyclerView rvColor;
 
         @BindView(R.id.imgProduct)
         ImageView imgProduct;

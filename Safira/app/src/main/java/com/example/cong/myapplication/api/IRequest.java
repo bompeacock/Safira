@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.api;
 
+import com.example.cong.myapplication.model.ResultProductsType;
 import com.example.cong.myapplication.model.ResultsCollection;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public interface IRequest {
     @GET("product/complexAPI")
     Call<List<ResultsCollection>> listCollection();
 
-
+    @GET("product/getProductByType")
+    Call<ResultProductsType> getProductsByType();
 
 
 

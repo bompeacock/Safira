@@ -25,6 +25,9 @@ public class MissyFragment extends Fragment {
     @BindView(R.id.rvMissy)
     RecyclerView rvMissy;
 
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
+
     Context context;
 
     GridLayoutManager manager;
@@ -48,13 +51,6 @@ public class MissyFragment extends Fragment {
         rvMissy.setAdapter(missyItemAdapter);
         rvMissy.setHasFixedSize(true);
         manager = new GridLayoutManager(context,2);
-//        manager.getSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return 0;
-//            }
-//        });
-
         rvMissy.setLayoutManager(manager);
 
         return view;

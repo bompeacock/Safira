@@ -1,6 +1,5 @@
 package com.example.cong.myapplication.utils;
 
-import com.example.cong.myapplication.model.CollectionTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,14 +13,7 @@ public class RetrofitUtils {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-    public static Retrofit getSpecifically(){
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(new CollectionTypeAdapter())
-                .create();
-        return new Retrofit.Builder()
-                .baseUrl(Constant.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-    }
+
 
 
 //    public static Retrofit getRetrofit(){

@@ -1,12 +1,14 @@
 package com.example.cong.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cong.myapplication.R;
+import com.example.cong.myapplication.activity.DetailsProduct;
 import com.example.cong.myapplication.model.Product;
 
 import java.util.List;
@@ -36,8 +38,8 @@ public class MenAdapter extends RecyclerView.Adapter{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, DetailsProduct.class);
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, DetailsProduct.class);
+                context.startActivity(intent);
             }
         });
     }

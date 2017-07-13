@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".activity.DetailsProduct" />
         <activity android:name=".activity.Pick_product" />
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.TypeProducts"></activity>
     </application>
 
 </manifest>

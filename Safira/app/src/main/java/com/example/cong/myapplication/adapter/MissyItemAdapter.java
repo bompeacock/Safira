@@ -24,8 +24,7 @@ import butterknife.ButterKnife;
 
 public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int TYPE_HEADER = 0;
-    private static final int TYPE_ITEM =1;
+
     List<Product> listProduct;
     Context context;
     public MissyItemAdapter(Context context) {
@@ -45,21 +44,17 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_ITEM){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_missy,parent,false);
+
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mix,parent,false);
             return new MyViewHolder(view);
-        }else if(viewType == TYPE_HEADER){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header,parent,false);
-            return new MyHeaderViewHolder(view);
-        }
-        return null;
+
 
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof MyViewHolder){
-            final Product product = listProduct.get(position-1);
+            final Product product = listProduct.get(position);
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             myViewHolder.txtProductName.setText(product.getName());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,21 +67,13 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if(isPositionHeader(position)){
-            return TYPE_HEADER;
-        }
-        return TYPE_ITEM;
-    }
 
-    public boolean isPositionHeader(int position) {
-        return position ==0;
-    }
+
+
 
     @Override
     public int getItemCount() {
-        return listProduct.size()+1;
+        return listProduct.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -98,11 +85,5 @@ public class MissyItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    private class MyHeaderViewHolder extends RecyclerView.ViewHolder {
 
-        public MyHeaderViewHolder(View view) {
-            super(view);
-
-        }
-    }
 }

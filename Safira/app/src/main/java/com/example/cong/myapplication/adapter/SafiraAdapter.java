@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
-import com.example.cong.myapplication.model.CollectionTypeAdapter;
 import com.example.cong.myapplication.model.ModelProductWithCategory;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ProductMixWithFeature;
@@ -42,15 +41,15 @@ public class SafiraAdapter extends RecyclerView.Adapter {
         LayoutInflater inflater = LayoutInflater.from(context);
 
         switch (viewType){
-            case CollectionTypeAdapter.TYPE_BANNER:
+            case Constant.TypeCollection.TYPE_BANNER:
                 View viewBanner = inflater.inflate(R.layout.item_banner,parent,false);
                 viewHolder = new BannerViewHolder(viewBanner);
                 break;
-            case CollectionTypeAdapter.TYPE_CAROUSEL:
+            case Constant.TypeCollection.TYPE_CAROUSEL:
                 View viewCarousel = inflater.inflate(R.layout.item_safira,parent,false);
                 viewHolder = new CarouselViewHolder(viewCarousel);
                 break;
-            case CollectionTypeAdapter.TYPE_MIX_PRODUCT:
+            case Constant.TypeCollection.TYPE_MIX_PRODUCT:
                 View viewMix = inflater.inflate(R.layout.item_mix_product_collection,parent,false);
                 viewHolder = new MixViewHolder(viewMix);
                 break;
@@ -63,15 +62,15 @@ public class SafiraAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()){
-            case CollectionTypeAdapter.TYPE_BANNER:
+            case Constant.TypeCollection.TYPE_BANNER:
                 BannerViewHolder bannerViewHolder = (BannerViewHolder) holder;
                 configBannerViewHolder(bannerViewHolder, position);
                 break;
-            case CollectionTypeAdapter.TYPE_CAROUSEL:
+            case Constant.TypeCollection.TYPE_CAROUSEL:
                 CarouselViewHolder carouselViewHolder = (CarouselViewHolder) holder;
                 configCarouselViewHolder(carouselViewHolder,position);
                 break;
-            case CollectionTypeAdapter.TYPE_MIX_PRODUCT:
+            case Constant.TypeCollection.TYPE_MIX_PRODUCT:
                 MixViewHolder mixViewHolder = (MixViewHolder) holder;
                 configMixViewHolder(mixViewHolder,position);
         }
@@ -202,4 +201,6 @@ public class SafiraAdapter extends RecyclerView.Adapter {
         }
     }
 
+    private class CollectionTypeAdapter {
+    }
 }

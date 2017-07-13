@@ -91,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
                         // TODO: handle navigation
 
                         // Closing drawer on item click
+                        Intent intent = new Intent(getBaseContext(),TypeProducts.class);
+                        startActivity(intent);
                         mDrawerLayout.closeDrawers();
+
                         return true;
                     }
                 });

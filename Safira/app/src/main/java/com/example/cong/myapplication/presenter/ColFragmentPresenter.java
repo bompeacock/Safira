@@ -33,7 +33,7 @@ public class ColFragmentPresenter {
             public void onResponse(Call<List<ResultsCollection>> call, Response<List<ResultsCollection>> response) {
                 if(response!=null){
                    collectionView.loadViewsCollection(response.body());
-                }else Toast.makeText(collectionView.getContextView(),"nothing here",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
