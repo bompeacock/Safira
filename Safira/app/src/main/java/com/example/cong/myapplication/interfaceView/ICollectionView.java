@@ -12,6 +12,5 @@ import java.util.List;
 
 public interface ICollectionView {
     public void loadViewsCollection(List<ResultsCollection> listColleciton);
-    public Context getContextView();
     public void showFailView();
 }

@@ -2,7 +2,6 @@ package com.example.cong.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -10,10 +9,11 @@ import android.widget.ImageView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.ColorAdapter;
-import com.example.cong.myapplication.adapter.MissyItemAdapter;
 import com.example.cong.myapplication.adapter.PickDetailsImageProductAdapter;
+import com.example.cong.myapplication.interfaceView.IDetailsProductView;
 import com.example.cong.myapplication.model.Color;
-import com.squareup.picasso.Picasso;
+import com.example.cong.myapplication.presenter.DetailsProductPresenter;
+import com.example.cong.myapplication.utils.PicassoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailsProduct extends AppCompatActivity implements PickDetailsImageProductAdapter.IClicklistener {
+public class DetailsProduct extends AppCompatActivity implements PickDetailsImageProductAdapter.IClicklistener, IDetailsProductView {
 
     @BindView(R.id.img_details_product)
     ImageView mImageProduct;
@@ -35,27 +35,22 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
     @BindView(R.id.rvRecommend)
     RecyclerView rvRecommend;
+
+    private String code;
+
+    private DetailsProductPresenter detailsProductPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_product);
         ButterKnife.bind(this);
 
-        //set toolbar
+        code = getIntent().getStringExtra("code");
 
-        toolbar.setTitle("Details Product");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        detailsProductPresenter = new DetailsProductPresenter(this);
 
-        //fill data layout image product
-        List<String> urlProducts = new ArrayList<>();
-        urlProducts.add("https://www.vividlinen.com/images/product_photo/list/t3534_20170316043911_12209.jpg");
-        urlProducts.add("https://www.vividlinen.com/images/product_photo/detail/t3534_20170316043924_12211.jpg");
-        urlProducts.add("https://www.vividlinen.com/images/product_photo/list/t3534_20170316043911_12209.jpg");
-        urlProducts.add("https://www.vividlinen.com/images/product_photo/list/t3534_20170316043911_12209.jpg");
-        PickDetailsImageProductAdapter mPickDetailsImageProductAdapter = new PickDetailsImageProductAdapter(this,urlProducts);
-        rvImageProduct.setAdapter(mPickDetailsImageProductAdapter);
+        setupView();
 
         //fill data image color
         List<Color> colors = new ArrayList<>();
@@ -66,17 +61,27 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
         rvImgColor.setAdapter(colorAdapter);
 
         //fill data rv recommandation
-        MissyItemAdapter missyItemAdapter  = new MissyItemAdapter(this);
-        rvRecommend.setAdapter(missyItemAdapter);
-        GridLayoutManager manager  = new GridLayoutManager(this,2);
-        rvRecommend.setLayoutManager(manager);
+//        MissyItemAdapter missyItemAdapter  = new MissyItemAdapter(this,);
+//        rvRecommend.setAdapter(missyItemAdapter);
+//        GridLayoutManager manager  = new GridLayoutManager(this,2);
+//        rvRecommend.setLayoutManager(manager);
+    }
+
+    private void setupView() {
+        //set toolbar
+        toolbar.setTitle("Details Product");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //fill data layout image product
+        detailsProductPresenter.loadDataImagesProduct(code);
+
     }
 
     @Override
     public void updateImage(String url) {
-        Picasso.with(this).load(url)
-                .placeholder(R.drawable.progress)
-                .into(mImageProduct);
+        PicassoUtils.loadImage(this, url, mImageProduct);
 
     }
 
@@ -90,5 +95,27 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void loadViewImagesDetails(List<String> urlProducts) {
+        PickDetailsImageProductAdapter mPickDetailsImageProductAdapter = new PickDetailsImageProductAdapter(this,urlProducts);
+        rvImageProduct.setAdapter(mPickDetailsImageProductAdapter);
+
+    }
+
+    @Override
+    public void loadViewInfoProduct() {
+
+    }
+
+    @Override
+    public void loadViewProductColor() {
+
+    }
+
+    @Override
+    public void loadViewRecommandation() {
+
     }
 }

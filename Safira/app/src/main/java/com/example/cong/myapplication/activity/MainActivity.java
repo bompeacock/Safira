@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
         adapter.addFragment(new SafiraFragment(this), "COLLECTION");
-        adapter.addFragment(new MenFragment(this), "MISSY");
-        adapter.addFragment(new MissyFragment(this), "PLUS");
-        adapter.addFragment(new MenFragment(this), "MEN");
-        adapter.addFragment(new MissyFragment(this), "ACCESSORIES");
+        adapter.addFragment(new MissyFragment(this,2), "MISSY");
+        adapter.addFragment(new MissyFragment(this,3), "PLUS");
+        adapter.addFragment(new MissyFragment(this,4), "MEN");
+        adapter.addFragment(new MissyFragment(this,5), "ACCESSORIES");
         viewPager.setAdapter(adapter);
     }
 

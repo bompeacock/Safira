@@ -1,8 +1,5 @@
 package com.example.cong.myapplication.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -14,6 +11,12 @@ public class RetrofitUtils {
                 .build();
     }
 
+    public static Retrofit getRetrofitWithRealServer(){
+        return new Retrofit.Builder()
+                .baseUrl(Constant.REAL_SERVER)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 
 
 //    public static Retrofit getRetrofit(){

@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.cong.myapplication.R;
-import com.squareup.picasso.Picasso;
+import com.example.cong.myapplication.utils.Constant;
+import com.example.cong.myapplication.utils.PicassoUtils;
 
 import java.util.List;
 
@@ -41,20 +42,13 @@ public class PickDetailsImageProductAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final MyViewHolder myViewHolder = (MyViewHolder) holder;
-        final String url = imageURIs.get(position);
+        final String url = Constant.IMAGE_URL_SINGLE_IMAGE + imageURIs.get(position);
 
-        Picasso.with(context).load(url)
-                .placeholder(R.drawable.ic_favorite)
-                .into(myViewHolder.img_product_item, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
+        if(position == 0){
+            iClicklistener.updateImage(url);
+        }
 
-                    @Override
-                    public void onError() {
-                        myViewHolder.img_product_item.setBackgroundResource(R.drawable.a);
-                    }
-                });
+        PicassoUtils.loadImageAnResize(context, url, myViewHolder.img_product_item);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

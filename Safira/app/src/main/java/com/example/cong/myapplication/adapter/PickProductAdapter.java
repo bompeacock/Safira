@@ -11,39 +11,33 @@ import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.activity.DetailsProduct;
-import com.example.cong.myapplication.utils.Utils;
+import com.example.cong.myapplication.model.ResultPickProductAndRec;
+import com.example.cong.myapplication.utils.Constant;
+import com.example.cong.myapplication.utils.PicassoUtils;
+
+import java.util.List;
+
 
 /**
  * Created by CongNV4 on 5/21/2017.
  */
 public class PickProductAdapter extends PagerAdapter {
-    private final Utils.LibraryObject[] TWO_WAY_LIBRARIES = new Utils.LibraryObject[]{
-            new Utils.LibraryObject(
-                    R.drawable.a,
-                    "Fintech"
-            ),
-            new Utils.LibraryObject(
-                    R.drawable.a,
-                    "Delivery"
-            ),
-            new Utils.LibraryObject(
-                    R.drawable.a,
-                    "Social network"
-            )
-    };
+    private List<ResultPickProductAndRec> resultPickProductAndRecs;
 
     private Context context;
     private LayoutInflater mLayoutInflater;
 
-    public PickProductAdapter(final Context context) {
+
+    public PickProductAdapter(final Context context , List<ResultPickProductAndRec> resultPickProductAndRecs ) {
         mLayoutInflater = LayoutInflater.from(context);
+        this.resultPickProductAndRecs = resultPickProductAndRecs;
         this.context = context;
     }
 
 
     @Override
     public int getCount() {
-        return TWO_WAY_LIBRARIES.length;
+        return resultPickProductAndRecs.size();
     }
 
     @Override
@@ -55,17 +49,21 @@ public class PickProductAdapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view = mLayoutInflater.inflate(R.layout.item, container, false);
 
+        final ResultPickProductAndRec resultPickProductAndRec = resultPickProductAndRecs.get(position);
+
         final TextView txt = (TextView) view.findViewById(R.id.txt_item);
-        txt.setText(TWO_WAY_LIBRARIES[position].getTitle());
+        txt.setText(resultPickProductAndRec.getProductName());
 
         final ImageView img = (ImageView) view.findViewById(R.id.img_item);
-        img.setImageResource(TWO_WAY_LIBRARIES[position].getRes());
+
+        PicassoUtils.loadImage(context,Constant.IMAGE_URL_SINGLE_IMAGE + resultPickProductAndRec.getPath(),img);
 
         container.addView(view);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(context, DetailsProduct.class);
+                intent.putExtra("code", resultPickProductAndRec.getCode());
                 context.startActivity(intent);
             }
         });

@@ -78,10 +78,7 @@ public class SafiraFragment extends Fragment implements ICollectionView{
 
     }
 
-    @Override
-    public Context getContextView() {
-        return this.context;
-    }
+
 
     @Override
     public void showFailView() {
