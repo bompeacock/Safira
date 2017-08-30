@@ -16,7 +16,6 @@ import android.view.MenuItem;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.TabLayoutAdapter;
-import com.example.cong.myapplication.fragment.MenFragment;
 import com.example.cong.myapplication.fragment.MissyFragment;
 import com.example.cong.myapplication.fragment.SafiraFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -133,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
 
                 signOut();
                 break;
+            case R.id.mnNotification:
+                Intent intent = new Intent(this, Address.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
