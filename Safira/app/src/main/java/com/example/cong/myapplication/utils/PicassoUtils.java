@@ -31,5 +31,12 @@ public class PicassoUtils {
                 .resize(200,250)
                 .into(img);
     }
+    public static void loadImageAndResizeForCart(Context context, String urlImage, ImageView img){
+        Picasso.with(context)
+                .load(urlImage)
+                .placeholder(R.drawable.progress)
+                .resize(150,200)
+                .into(img);
+    }
 
 }

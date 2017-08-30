@@ -21,7 +21,9 @@
         <activity android:name=".activity.Pick_product" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.TypeProducts" />
-        <activity android:name=".activity.Address"></activity>
+        <activity android:name=".activity.Address" />
+        <activity android:name=".activity.Cart" />
+        <activity android:name=".activity.Cart2"></activity>
     </application>
 
 </manifest>

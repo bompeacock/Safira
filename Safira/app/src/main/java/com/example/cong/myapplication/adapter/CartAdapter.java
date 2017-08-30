@@ -2,33 +2,37 @@ package com.example.cong.myapplication.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
-import com.example.cong.myapplication.model.Product;
+import com.example.cong.myapplication.model.ProductInCart;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
- * Created by Cong on 30/08/2017.
+ * Created by CongNV4 on 8/30/2017.
  */
 
-public class CartAdapter extends RecyclerView.Adapter{
+public class CartAdapter extends RecyclerView.Adapter {
 
     Context context;
 
-    List<Product> cart;
+    List<ProductInCart> productInCarts;
+
+    public CartAdapter(Context context) {
+        this.context = context;
+        productInCarts =  new ArrayList<>();
+        productInCarts.add(new ProductInCart());
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+
+        View view = LayoutInflater.from(context).inflate(R.layout.item_cart,parent,false);
+        return new CartViewHolder(view);
     }
 
     @Override
@@ -38,28 +42,12 @@ public class CartAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return productInCarts.size();
     }
+    public class CartViewHolder extends RecyclerView.ViewHolder {
 
-    public class CartViewHolder  extends RecyclerView.ViewHolder {
-        @BindView(R.id.imgProduct)
-        ImageView imgProduct;
-
-        @BindView(R.id.txtProductName)
-        TextView txtProductName;
-
-        @BindView(R.id.txtStyle)
-        TextView txtStyle;
-
-        @BindView(R.id.btnLIke)
-        Button btnLike;
-
-        @BindView(R.id.btnAddToCart)
-        Button btnAddToCart;
         public CartViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
         }
     }
-
 }

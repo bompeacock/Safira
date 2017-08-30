@@ -58,7 +58,7 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 
         prepareView();
 
-        typeProductsPresenter.loadData();
+
 
     }
 
@@ -72,6 +72,7 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        typeProductsPresenter.loadData();
 
     }
 
