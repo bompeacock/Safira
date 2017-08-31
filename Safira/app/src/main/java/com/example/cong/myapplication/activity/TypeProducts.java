@@ -86,7 +86,7 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
     public void loadDataSuccess(Banner banner,  List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
 
 
-        Picasso.with(this).load(Constant.IMAGE_URL_BANNER + banner.getUrlBanner())
+        Picasso.with(this).load(Constant.IMAGE_URL_BANNER + banner.getPath())
                 .into(imgCollapsing);
 
         rvProductsType.setAdapter(new InsideSafiraAdapter(this,resultProducByGroupAndTypes));

@@ -77,8 +77,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     private void setViews() {
         // Adding Toolbar to Main screen
         setSupportActionBar(toolbar);
-        // Setting ViewPager for each Tabs
-        setupViewPager(viewPager);
+        // Setting ViewPager for each Tabs  //set view Drawer
+        mainViewPresenter.loadDataForDrawer();
+
         // Set Tabs inside Toolbar
         tabLayout.setupWithViewPager(viewPager);
         // Create Navigation drawer and inlfate layout
@@ -99,8 +100,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         viewPager.setOffscreenPageLimit(tabLayout.getTabCount());
 
 
-        //set view Drawer
-        mainViewPresenter.loadDataForDrawer();
+
 
 
 
@@ -111,14 +111,15 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(ViewPager viewPager,List<Group> groups) {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
+
         adapter.addFragment(new SafiraFragment(this), "COLLECTION");
-        adapter.addFragment(new MissyFragment(this,2), "MISSY");
-        adapter.addFragment(new MissyFragment(this,3), "PLUS");
-        adapter.addFragment(new MissyFragment(this,4), "MEN");
-        adapter.addFragment(new MissyFragment(this,5), "ACCESSORIES");
-        viewPager.setAdapter(adapter);
+        for (int i = 1; i< groups.size()-1; i++){
+            adapter.addFragment(new MissyFragment(this, groups.get(i).getId()), groups.get(i).getName());
+            viewPager.setAdapter(adapter);
+        }
+
     }
 
 
@@ -134,11 +135,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         switch (item.getItemId()){
                     case R.id.mnCart:
                     startActivity(new Intent(this, Cart.class));
-//                        signOut();
                         break;
             case R.id.mnNotification:
                 Intent intent = new Intent(this, Address.class);
                 startActivity(intent);
+                break;
+            case R.id.mnSearch:
+                startActivity(new Intent(this,Search.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -161,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void setUpViewOfDraw(List<Group> groups, HashMap<Group, List<Type>> types) {
+        setupViewPager(viewPager, groups);
+
         CustomExpandableListAdapter customExpandableListAdapter
                 = new CustomExpandableListAdapter(this,groups,types);
         expandableListView.setAdapter(customExpandableListAdapter);

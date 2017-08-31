@@ -24,8 +24,6 @@ public interface IRequestForGroupAndType {
     @GET("type")
     Call<List<Type>>  getType(@Query("groupId") int groupId, @Query("location") boolean location);
 
-    @GET("banner/single-images")
-    Call<Banner>  getBanner(@Query("groupId") int groupId, @Query("typeId") int typeId, @Query("location") boolean location);
 
     @GET("single-image")
     Call<List<ResultProducByGroupAndType>> getProductType(@QueryMap(encoded = true)Map<String,String> option

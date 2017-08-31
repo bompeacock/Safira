@@ -110,7 +110,7 @@ public class SafiraAdapter extends RecyclerView.Adapter {
     private void configBannerViewHolder(BannerViewHolder bannerViewHolder, int position) {
         ResultsCollection typeBanner = list.get(position);
 
-        Picasso.with(context).load(Constant.IMAGE_URL+typeBanner.getBanner().getUrlBanner())
+        Picasso.with(context).load(Constant.IMAGE_URL+typeBanner.getBanner().getPath())
                 .placeholder(R.drawable.progress)
                 .into(bannerViewHolder.getImgBanner());
     }

@@ -10,21 +10,22 @@ public class Banner {
     @SerializedName("id")
     private int id;
     @SerializedName("path")
-    private String urlBanner;
+    private String path;
 
-    public Banner() {
-    }
-
-    public Banner(int id, String urlBanner) {
-        this.id = id;
-        this.urlBanner = urlBanner;
-    }
 
     public int getId() {
         return id;
     }
 
-    public String getUrlBanner() {
-        return urlBanner;
+    public String getPath() {
+        return path;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

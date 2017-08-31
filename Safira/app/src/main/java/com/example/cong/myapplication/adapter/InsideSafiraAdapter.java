@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
-import com.example.cong.myapplication.model.ResultDetails;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
@@ -49,7 +48,7 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
         Product product = resultProducByGroupAndTypes.get(position).getProduct();
 
         Picasso.with(context)
-                .load(Constant.IMAGE_URL_SINGLE_IMAGE + product.getUrlImage())
+                .load(Constant.IMAGE_URL_GROUP_TYPE + product.getUrlImage())
                 .placeholder(R.drawable.progress)
                 .into(viewHolder.imgProduct);
 

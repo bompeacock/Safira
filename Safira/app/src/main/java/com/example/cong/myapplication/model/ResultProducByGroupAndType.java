@@ -22,9 +22,9 @@ public class ResultProducByGroupAndType {
     public List<Color> getColors() {
         List<Color> l= new ArrayList<>();
         for (Object[] object :colors){
-            int id  = (int) object[0];
+            double id  = (double) object[0];
             String path  = (String) object[1];
-            l.add(new Color(id,path));
+            l.add(new Color((int) id,path));
         }
 
         return l;

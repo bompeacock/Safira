@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.presenter;
 
+import com.example.cong.myapplication.api.IRequestForBanner;
 import com.example.cong.myapplication.api.IRequestForGroupAndType;
 import com.example.cong.myapplication.interfaceView.ITypeProductsView;
 import com.example.cong.myapplication.model.Banner;
@@ -20,27 +21,47 @@ import retrofit2.Response;
 public class TypeProductsPresenter  {
     ITypeProductsView  typeProductsView;
 
-    Banner banner ;
 
-    List<ResultProducByGroupAndType> resultProducByGroupAndTypes;
+    IRequestForGroupAndType request;
+
+    IRequestForBanner requestForBanner;
+
+
     public TypeProductsPresenter(ITypeProductsView typeProductsView) {
         this.typeProductsView = typeProductsView;
+
+
+        request = RetrofitUtils.getRetrofitWithRealServer().create(IRequestForGroupAndType.class);
+
+        requestForBanner = RetrofitUtils.getRetrofitWithRealServer().create(IRequestForBanner.class);
+
     }
 
-    public void loadData(int groupId, int typeId){
-        IRequestForGroupAndType request = RetrofitUtils.getRetrofitWithRealServer().create(IRequestForGroupAndType.class);
-        request.getBanner(groupId,typeId,true).enqueue(new Callback<Banner>() {
+    public void loadData(final int groupId, final int typeId){
+
+
+        requestForBanner.getBanner(groupId,typeId,true).enqueue(new Callback<Banner>() {
             @Override
             public void onResponse(Call<Banner> call, Response<Banner> response) {
-                  response.body();
+                if(response!=null){
+                    handleBanner(response,groupId,typeId);
+                }
             }
 
             @Override
             public void onFailure(Call<Banner> call, Throwable t) {
-                typeProductsView.loadViewFail();
+
             }
         });
 
+
+
+
+
+    }
+
+    private void handleBanner(Response<Banner> response, int groupId, int typeId) {
+        final Banner banner = response.body();
 
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.setGroup(groupId);
@@ -49,7 +70,7 @@ public class TypeProductsPresenter  {
         request.getProductType(searchRequest.castToMap(),true,4).enqueue(new Callback<List<ResultProducByGroupAndType>>() {
             @Override
             public void onResponse(Call<List<ResultProducByGroupAndType>> call, Response<List<ResultProducByGroupAndType>> response) {
-                resultProducByGroupAndTypes = response.body();
+                handleProducts(response, banner);
             }
 
             @Override
@@ -58,7 +79,13 @@ public class TypeProductsPresenter  {
             }
         });
 
+    }
+
+    private void handleProducts(Response<List<ResultProducByGroupAndType>> response, Banner banner) {
+        List<ResultProducByGroupAndType> resultProducByGroupAndTypes = response.body();
         typeProductsView.loadDataSuccess(banner,resultProducByGroupAndTypes);
 
+
     }
+
 }

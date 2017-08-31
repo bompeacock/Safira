@@ -18,6 +18,7 @@ public class Product {
     @SerializedName("productId")
     private String productId;
 
+
     public Product() {
     }
 
@@ -29,10 +30,6 @@ public class Product {
         return idSingleImg;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-
     public String getName() {
         return name;
     }
@@ -41,11 +38,11 @@ public class Product {
         return urlImage;
     }
 
-
-
     public String getCode() {
         return code;
     }
 
-
+    public String getProductId() {
+        return productId;
+    }
 }
