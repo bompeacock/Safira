@@ -13,15 +13,15 @@
         android:id="@+id/rvProductCart"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="550dp">
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:elevation="2dp"
+        android:elevation="4dp"
         android:padding="4dp"
         android:background="#FFFFFF">
         <TextView

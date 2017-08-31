@@ -30,21 +30,18 @@ public class TypeProductsPresenter  {
     public TypeProductsPresenter(ITypeProductsView typeProductsView) {
         this.typeProductsView = typeProductsView;
 
-
         request = RetrofitUtils.getRetrofitWithRealServer().create(IRequestForGroupAndType.class);
 
         requestForBanner = RetrofitUtils.getRetrofitWithRealServer().create(IRequestForBanner.class);
 
     }
 
-    public void loadData(final int groupId, final int typeId){
-
-
+    public void loadDataBanner(int groupId, int typeId) {
         requestForBanner.getBanner(groupId,typeId,true).enqueue(new Callback<Banner>() {
             @Override
             public void onResponse(Call<Banner> call, Response<Banner> response) {
                 if(response!=null){
-                    handleBanner(response,groupId,typeId);
+                    typeProductsView.loadBanner(response.body());
                 }
             }
 
@@ -53,15 +50,9 @@ public class TypeProductsPresenter  {
 
             }
         });
-
-
-
-
-
     }
 
-    private void handleBanner(Response<Banner> response, int groupId, int typeId) {
-        final Banner banner = response.body();
+    public void loadDataProduct(int groupId, int typeId) {
 
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.setGroup(groupId);
@@ -70,7 +61,7 @@ public class TypeProductsPresenter  {
         request.getProductType(searchRequest.castToMap(),true,4).enqueue(new Callback<List<ResultProducByGroupAndType>>() {
             @Override
             public void onResponse(Call<List<ResultProducByGroupAndType>> call, Response<List<ResultProducByGroupAndType>> response) {
-                handleProducts(response, banner);
+                typeProductsView.loadListProduct(response.body());
             }
 
             @Override
@@ -78,14 +69,5 @@ public class TypeProductsPresenter  {
 
             }
         });
-
     }
-
-    private void handleProducts(Response<List<ResultProducByGroupAndType>> response, Banner banner) {
-        List<ResultProducByGroupAndType> resultProducByGroupAndTypes = response.body();
-        typeProductsView.loadDataSuccess(banner,resultProducByGroupAndTypes);
-
-
-    }
-
 }

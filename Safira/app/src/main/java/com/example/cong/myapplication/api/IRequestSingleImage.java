@@ -2,6 +2,7 @@ package com.example.cong.myapplication.api;
 
 import com.example.cong.myapplication.model.ResultDetails;
 import com.example.cong.myapplication.model.ResultPickProductAndRec;
+import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface IRequestSingleImage {
     @GET("single-image/getDetailsImage")
     Call<List<ResultDetails>> getImagesDetails(@Query("imageCode") String imageCode);
 
+    @GET("single-image/search")
+    Call<List<ResultProducByGroupAndType>> search(@Query("keyword") String keyword, @Query("location") boolean location);
 }

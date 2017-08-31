@@ -10,6 +10,7 @@ import java.util.List;
  */
 
 public interface ITypeProductsView {
-    void loadDataSuccess(Banner banner, List<ResultProducByGroupAndType> resultProducByGroupAndTypes);
+    void loadListProduct(List<ResultProducByGroupAndType> resultProducByGroupAndTypes);
+    void loadBanner(Banner banner);
     void loadViewFail();
 }

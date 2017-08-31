@@ -17,6 +17,8 @@ public class Product {
     private String code;
     @SerializedName("productId")
     private String productId;
+    @SerializedName("dolar")
+    private int price;
 
 
     public Product() {
@@ -44,5 +46,9 @@ public class Product {
 
     public String getProductId() {
         return productId;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

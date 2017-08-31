@@ -47,6 +47,7 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 
     int groupId;
     int typeId;
+    String title;
 
     private TypeProductsPresenter typeProductsPresenter;
 
@@ -58,41 +59,42 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 
         groupId = getIntent().getIntExtra("groupId",-1);
         typeId = getIntent().getIntExtra("typeId",-1);
+        title = getIntent().getStringExtra("title");
 
         typeProductsPresenter = new TypeProductsPresenter(this);
 
-        prepareView();
+        prepareView(title);
 
 
 
     }
 
-    private void prepareView() {
+    private void prepareView(String title) {
         GridLayoutManager manager = new GridLayoutManager(getBaseContext(),2);
         rvProductsType.setLayoutManager(manager);
 
         setSupportActionBar(toolbar);
-
+        toolbar.setTitle(title);
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(title);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        typeProductsPresenter.loadData(groupId, typeId);
-
+        typeProductsPresenter.loadDataBanner(groupId, typeId);
+        typeProductsPresenter.loadDataProduct(groupId, typeId);
 
     }
 
     @Override
-    public void loadDataSuccess(Banner banner,  List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
-
-
-        Picasso.with(this).load(Constant.IMAGE_URL_BANNER + banner.getPath())
-                .into(imgCollapsing);
-
+    public void loadListProduct(List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
         rvProductsType.setAdapter(new InsideSafiraAdapter(this,resultProducByGroupAndTypes));
 
-//        layoutTypeProducts.setVisibility(View.VISIBLE);
-//        pbloading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void loadBanner(Banner banner) {
+        Picasso.with(this).load(Constant.IMAGE_URL_BANNER + banner.getPath())
+                .into(imgCollapsing);
     }
 
     @Override

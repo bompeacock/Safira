@@ -65,6 +65,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
                 intent.putExtra("groupId", g.getId());
                 intent.putExtra("typeId", type.getId());
+                intent.putExtra("title", type.getName());
 
                 context.startActivity(intent);
             }
