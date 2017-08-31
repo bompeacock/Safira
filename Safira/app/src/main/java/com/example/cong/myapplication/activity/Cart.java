@@ -2,6 +2,7 @@ package com.example.cong.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -51,7 +52,7 @@ public class Cart extends AppCompatActivity implements ICartView{
 
         cartPresenter.loadDataCart();
 
-        rvProductCart.setAdapter(new CartAdapter(this));
+
 
     }
 
@@ -69,6 +70,8 @@ public class Cart extends AppCompatActivity implements ICartView{
 
     @Override
     public void loadViewCart(List<ProductInCart> cart) {
+        rvProductCart.setAdapter(new CartAdapter(this, cart));
+        rvProductCart.setLayoutManager(new LinearLayoutManager(this));
 
     }
 

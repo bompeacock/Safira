@@ -41,7 +41,7 @@ public class ColorAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ColorViewHolder colorViewHolder = (ColorViewHolder) holder;
 
-        String url = colors.get(position).getUrl();
+        String url = colors.get(position).getPath();
 
         Picasso.with(context).load(url)
                 .placeholder(R.drawable.progress)

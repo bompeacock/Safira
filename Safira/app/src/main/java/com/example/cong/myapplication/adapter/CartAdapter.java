@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.model.ProductInCart;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,15 +21,15 @@ public class CartAdapter extends RecyclerView.Adapter {
 
     List<ProductInCart> productInCarts;
 
-    public CartAdapter(Context context) {
+
+
+    public CartAdapter(Context context, List<ProductInCart> cart) {
         this.context = context;
-        productInCarts =  new ArrayList<>();
-        productInCarts.add(new ProductInCart());
+        this.productInCarts = cart;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(context).inflate(R.layout.item_cart,parent,false);
         return new CartViewHolder(view);
     }

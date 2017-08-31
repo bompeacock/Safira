@@ -15,8 +15,7 @@ import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.InsideSafiraAdapter;
 import com.example.cong.myapplication.interfaceView.ITypeProductsView;
 import com.example.cong.myapplication.model.Banner;
-import com.example.cong.myapplication.model.Product;
-import com.example.cong.myapplication.model.ResultProductsType;
+import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.presenter.TypeProductsPresenter;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
@@ -46,6 +45,9 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 //    @BindView(R.id.pbLoading)
 //    RelativeLayout pbloading;
 
+    int groupId;
+    int typeId;
+
     private TypeProductsPresenter typeProductsPresenter;
 
     @Override
@@ -53,6 +55,9 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_products);
         ButterKnife.bind(this);
+
+        groupId = getIntent().getIntExtra("groupId",-1);
+        typeId = getIntent().getIntExtra("typeId",-1);
 
         typeProductsPresenter = new TypeProductsPresenter(this);
 
@@ -72,20 +77,19 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        typeProductsPresenter.loadData();
+        typeProductsPresenter.loadData(groupId, typeId);
+
 
     }
 
     @Override
-    public void loadDataSuccess(ResultProductsType resultProductsType) {
-        Banner banner = resultProductsType.getBanner();
+    public void loadDataSuccess(Banner banner,  List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
 
-        List<Product> productList = resultProductsType.getProducts();
 
-        Picasso.with(this).load(Constant.IMAGE_URL + banner.getUrlBanner())
+        Picasso.with(this).load(Constant.IMAGE_URL_BANNER + banner.getUrlBanner())
                 .into(imgCollapsing);
 
-        rvProductsType.setAdapter(new InsideSafiraAdapter(this,productList));
+        rvProductsType.setAdapter(new InsideSafiraAdapter(this,resultProducByGroupAndTypes));
 
 //        layoutTypeProducts.setVisibility(View.VISIBLE);
 //        pbloading.setVisibility(View.GONE);

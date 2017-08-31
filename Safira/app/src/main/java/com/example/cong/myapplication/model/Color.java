@@ -9,34 +9,27 @@ import com.google.gson.annotations.SerializedName;
 public class Color {
     @SerializedName("id")
     private int id;
-    @SerializedName("name")
-    private String name;
-    @SerializedName("urlImageColor")
-    private String url;
+    @SerializedName("path")
+    private String path;
 
-    public Color(){
-    }
-    public Color(int id,String name, String url) {
+    public Color(int id, String path) {
         this.id = id;
-        this.name = name;
-        this.url = url;
+        this.path = path;
     }
 
-
-
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public String getUrl() {
-        return url;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPath() {
+        return path;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath(String path) {
+        this.path = path;
     }
 }

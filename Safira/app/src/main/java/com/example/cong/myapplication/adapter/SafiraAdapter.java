@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
-import com.example.cong.myapplication.model.ModelProductWithCategory;
-import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ProductMixWithFeature;
 import com.example.cong.myapplication.model.ResultsCollection;
 import com.example.cong.myapplication.utils.Constant;
@@ -99,13 +97,13 @@ public class SafiraAdapter extends RecyclerView.Adapter {
 
     private void configCarouselViewHolder(CarouselViewHolder carouselViewHolder, int position) {
         ResultsCollection typeCarousel =  list.get(position);
-        ModelProductWithCategory modelProductWithCategory = typeCarousel.getModelProductWithCategory();
-        List<Product> productList =  modelProductWithCategory.getListproduct();
-
-        carouselViewHolder.getTxtCategory().setText(modelProductWithCategory.getCategory());
-
-        InsideSafiraAdapter adapter = new InsideSafiraAdapter(context,productList);
-        carouselViewHolder.getRvSafiraItem().setAdapter(adapter);
+//        ModelProductWithCategory modelProductWithCategory = typeCarousel.getModelProductWithCategory();
+//        List<Product> productList =  modelProductWithCategory.getListproduct();
+//
+//        carouselViewHolder.getTxtCategory().setText(modelProductWithCategory.getCategory());
+//
+//        InsideSafiraAdapter adapter = new InsideSafiraAdapter(context,productList);
+//        carouselViewHolder.getRvSafiraItem().setAdapter(adapter);
 
     }
 

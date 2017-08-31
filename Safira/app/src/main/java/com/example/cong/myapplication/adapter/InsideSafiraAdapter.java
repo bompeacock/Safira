@@ -9,7 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
+import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
+import com.example.cong.myapplication.model.ResultDetails;
+import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
 
@@ -24,12 +27,12 @@ import butterknife.ButterKnife;
 
 public class InsideSafiraAdapter extends RecyclerView.Adapter {
     Context context;
-    List<Product> listProduct;
+    List<ResultProducByGroupAndType> resultProducByGroupAndTypes;
 
 
-    public InsideSafiraAdapter(Context context, List<Product> productList) {
+    public InsideSafiraAdapter(Context context, List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
         this.context = context;
-        this.listProduct = productList;
+        this.resultProducByGroupAndTypes = resultProducByGroupAndTypes;
     }
 
     @Override
@@ -43,14 +46,14 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
 
         InsideSafiraViewHolder viewHolder = (InsideSafiraViewHolder) holder;
 
-        Product product = listProduct.get(position);
+        Product product = resultProducByGroupAndTypes.get(position).getProduct();
 
         Picasso.with(context)
-                .load(Constant.IMAGE_URL + product.getUrlImage())
+                .load(Constant.IMAGE_URL_SINGLE_IMAGE + product.getUrlImage())
                 .placeholder(R.drawable.progress)
                 .into(viewHolder.imgProduct);
 
-        List<String> listColor = product.getUrlFeature();
+        List<Color> listColor = resultProducByGroupAndTypes.get(position).getColors();
 
         ColorMiniAdapter colorAdapter = new ColorMiniAdapter(listColor,context);
         viewHolder.rvColor.setAdapter(colorAdapter);
@@ -62,7 +65,7 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return listProduct.size();
+        return resultProducByGroupAndTypes.size();
     }
     public class InsideSafiraViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.rvColor)

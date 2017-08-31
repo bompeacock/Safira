@@ -13,17 +13,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
 
 import com.example.cong.myapplication.R;
+import com.example.cong.myapplication.adapter.CustomExpandableListAdapter;
 import com.example.cong.myapplication.adapter.TabLayoutAdapter;
 import com.example.cong.myapplication.fragment.MissyFragment;
 import com.example.cong.myapplication.fragment.SafiraFragment;
+import com.example.cong.myapplication.interfaceView.IMainView;
+import com.example.cong.myapplication.model.Group;
+import com.example.cong.myapplication.model.Type;
+import com.example.cong.myapplication.presenter.MainViewPresenter;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -37,11 +46,15 @@ public class MainActivity extends AppCompatActivity {
 //    @BindView(R.id.drawerlayout)
 //    FlowingDrawer mDrawer;
 
+    @BindView(R.id.expandableListView)
+    ExpandableListView expandableListView;
+
 
     private DrawerLayout mDrawerLayout;
 
     private FirebaseAuth mAuth;
 
+    private MainViewPresenter mainViewPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        mainViewPresenter = new MainViewPresenter(this);
 
         setViews();
 
@@ -79,26 +94,15 @@ public class MainActivity extends AppCompatActivity {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
         // Set behavior of Navigation drawer
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    // This method will trigger on item Click of navigation menu
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // Set item in checked state
-                        menuItem.setChecked(true);
 
-                        // TODO: handle navigation
-
-                        // Closing drawer on item click
-                        Intent intent = new Intent(getBaseContext(),TypeProducts.class);
-                        startActivity(intent);
-                        mDrawerLayout.closeDrawers();
-
-                        return true;
-                    }
-                });
 
         viewPager.setOffscreenPageLimit(tabLayout.getTabCount());
+
+
+        //set view Drawer
+        mainViewPresenter.loadDataForDrawer();
+
+
 
     }
 
@@ -128,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.mnCart:
-
-                signOut();
-                break;
+                    case R.id.mnCart:
+                    startActivity(new Intent(this, Cart.class));
+//                        signOut();
+                        break;
             case R.id.mnNotification:
                 Intent intent = new Intent(this, Address.class);
                 startActivity(intent);
@@ -153,5 +157,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void setUpViewOfDraw(List<Group> groups, HashMap<Group, List<Type>> types) {
+        CustomExpandableListAdapter customExpandableListAdapter
+                = new CustomExpandableListAdapter(this,groups,types);
+        expandableListView.setAdapter(customExpandableListAdapter);
     }
 }

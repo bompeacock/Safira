@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.cong.myapplication.R;
+import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
 
@@ -22,11 +23,11 @@ import butterknife.ButterKnife;
 
 public class ColorMiniAdapter extends RecyclerView.Adapter {
 
-    private List<String> colors;
+    private List<Color> colors;
 
     private Context context;
 
-    public ColorMiniAdapter(List<String> colors, Context context) {
+    public ColorMiniAdapter(List<Color> colors, Context context) {
         this.colors = colors;
         this.context = context;
     }
@@ -42,7 +43,7 @@ public class ColorMiniAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ColorMiniViewHolder colorMiniViewHolder = (ColorMiniViewHolder) holder;
 
-        Picasso.with(context).load(Constant.IMAGE_URL+colors.get(position))
+        Picasso.with(context).load(Constant.IMAGE_URL_COLOR+colors.get(position).getPath())
                 .into(colorMiniViewHolder.imgColorMini);
     }
 

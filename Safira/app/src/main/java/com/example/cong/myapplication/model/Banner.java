@@ -9,8 +9,11 @@ import com.google.gson.annotations.SerializedName;
 public class Banner {
     @SerializedName("id")
     private int id;
-    @SerializedName("urlBanner")
+    @SerializedName("path")
     private String urlBanner;
+
+    public Banner() {
+    }
 
     public Banner(int id, String urlBanner) {
         this.id = id;

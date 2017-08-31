@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.R.attr.type;
+
 /**
  * Created by Cong on 26/08/2017.
  */
 
 public class SearchRequest implements Serializable {
     private int page = 0;
+    private int typeId = 0;
     private int group = 0;
     private int id = 0;
 
@@ -41,9 +44,18 @@ public class SearchRequest implements Serializable {
         page += 1;
     }
 
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int type) {
+        this.typeId = type;
+    }
+
     public Map<String,String> castToMap(){
         Map<String,String> map = new HashMap<>();
         if(group!=0) map.put("groupId",group+"");
+        if(type!=0) map.put("typeId",typeId+"");
         map.put("page",page+"");
         map.put("size",10+"");
 
