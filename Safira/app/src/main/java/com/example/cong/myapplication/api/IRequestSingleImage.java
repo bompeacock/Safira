@@ -1,6 +1,6 @@
 package com.example.cong.myapplication.api;
 
-import com.example.cong.myapplication.model.ResultDetails;
+import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultPickProductAndRec;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 
@@ -19,11 +19,14 @@ public interface IRequestSingleImage {
     Call<List<ResultPickProductAndRec>> getProductForPicking(@Query("mixImageId") int mixImageId);
 
     @GET("single-image/getDetailsImage")
-    Call<List<ResultDetails>> getImagesDetails(@Query("imageCode") String imageCode);
+    Call<List<Product>> getImagesDetails(@Query("imageCode") String imageCode);
 
     @GET("single-image/search")
     Call<List<ResultProducByGroupAndType>> search(@Query("keyword") String keyword, @Query("location") boolean location);
 
     @GET("single-image/findForCart")
-    Call<ResultDetails>  getInfoFromColor(@Query("productId") int productId);
+    Call<Product>  getInfoFromColor(@Query("productId") int productId);
+
+    @GET("single-image/image-relai")
+    Call<List<Product>> getRecommandation(@Query("imageCode") String imageCode);
 }

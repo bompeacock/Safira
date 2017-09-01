@@ -16,7 +16,7 @@ import com.example.cong.myapplication.adapter.ColorMiniAdapter;
 import com.example.cong.myapplication.adapter.InsideSafiraAdapter;
 import com.example.cong.myapplication.interfaceView.ITypeProductsView;
 import com.example.cong.myapplication.model.Banner;
-import com.example.cong.myapplication.model.ResultDetails;
+import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.presenter.TypeProductsPresenter;
 import com.example.cong.myapplication.utils.Constant;
@@ -108,8 +108,8 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
     }
 
     @Override
-    public void loadImage(ResultDetails resultDetails, int position) {
-        insideSafiraAdapter.changeInfoItem(resultDetails, position);
+    public void loadImage(Product product, int position) {
+        insideSafiraAdapter.changeInfoItem(product, position);
     }
 
     @Override

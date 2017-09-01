@@ -8,10 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
  public class ImageTarget {
     @SerializedName("5")
-    private ResultDetails resultDetails;
+    private Product product;
 
-    public ResultDetails getResultDetails() {
-        return resultDetails;
+    public Product getProduct() {
+        return product;
     }
-
 }

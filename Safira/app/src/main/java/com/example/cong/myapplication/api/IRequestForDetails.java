@@ -20,4 +20,6 @@ public interface IRequestForDetails {
 
     @GET("product/get-product-by-id")
     Call<ResultGetCode> getCode(@Query("productId") int groupId);
+
+
 }

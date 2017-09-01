@@ -13,7 +13,6 @@ import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.activity.DetailsProduct;
 import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
-import com.example.cong.myapplication.model.ResultDetails;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
@@ -79,9 +78,9 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter{
         return resultProducByGroupAndTypes.size();
     }
 
-    public void changeInfoItem(ResultDetails resultDetails, int position) {
-        resultProducByGroupAndTypes.get(position).getProduct().setCode(resultDetails.getCode());
-        resultProducByGroupAndTypes.get(position).getProduct().setUrlImage(resultDetails.getPath());
+    public void changeInfoItem(Product product, int position) {
+        resultProducByGroupAndTypes.get(position).getProduct().setCode(product.getCode());
+        resultProducByGroupAndTypes.get(position).getProduct().setUrlImage(product.getUrlImage());
         notifyItemChanged(position);
     }
 

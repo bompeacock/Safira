@@ -5,7 +5,7 @@ import com.example.cong.myapplication.api.IRequestForGroupAndType;
 import com.example.cong.myapplication.api.IRequestSingleImage;
 import com.example.cong.myapplication.interfaceView.ITypeProductsView;
 import com.example.cong.myapplication.model.Banner;
-import com.example.cong.myapplication.model.ResultDetails;
+import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.model.SearchRequest;
 import com.example.cong.myapplication.utils.RetrofitUtils;
@@ -76,14 +76,14 @@ public class TypeProductsPresenter  {
     }
 
     public void loadDataItemByColor(int id, final int position) {
-        requestSingleImage.getInfoFromColor(id).enqueue(new Callback<ResultDetails>() {
+        requestSingleImage.getInfoFromColor(id).enqueue(new Callback<Product>() {
             @Override
-            public void onResponse(Call<ResultDetails> call, Response<ResultDetails> response) {
+            public void onResponse(Call<Product> call, Response<Product> response) {
                 typeProductsView.loadImage(response.body(),position);
             }
 
             @Override
-            public void onFailure(Call<ResultDetails> call, Throwable t) {
+            public void onFailure(Call<Product> call, Throwable t) {
 
             }
         });
