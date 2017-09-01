@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.cong.myapplication.R;
+import com.example.cong.myapplication.adapter.ColorMiniAdapter;
 import com.example.cong.myapplication.adapter.SearchAdapter;
 import com.example.cong.myapplication.interfaceView.ISearchView;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
@@ -24,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Search extends AppCompatActivity implements ISearchView{
+public class Search extends AppCompatActivity implements ISearchView, ColorMiniAdapter.IMiniColor{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -111,6 +112,11 @@ public class Search extends AppCompatActivity implements ISearchView{
     public void loadProductVew(List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
         searchAdapter.addNewResult(resultProducByGroupAndTypes);
         searchAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void updateImageProduct(int id, int position) {
 
     }
 }

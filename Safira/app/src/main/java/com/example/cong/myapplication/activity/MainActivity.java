@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new SafiraFragment(this), "COLLECTION");
-        for (int i = 1; i< groups.size()-1; i++){
+        for (int i = 1; i< groups.size(); i++){
             adapter.addFragment(new MissyFragment(this, groups.get(i).getId()), groups.get(i).getName());
             viewPager.setAdapter(adapter);
         }
@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                     case R.id.mnCart:
                     startActivity(new Intent(this, Cart.class));
                         break;
-            case R.id.mnNotification:
-                Intent intent = new Intent(this, Address.class);
+            case R.id.mnFavorite:
+                Intent intent = new Intent(this, Favorite.class);
                 startActivity(intent);
                 break;
             case R.id.mnSearch:

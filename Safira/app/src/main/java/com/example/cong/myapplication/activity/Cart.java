@@ -1,11 +1,14 @@
 package com.example.cong.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.CartAdapter;
@@ -26,6 +29,8 @@ public class Cart extends AppCompatActivity implements ICartView{
     @BindView(R.id.rvProductCart)
     RecyclerView rvProductCart;
 
+    @BindView(R.id.txtCheckOut)
+    TextView txtCheckOut;
 
     CartPresenter cartPresenter;
     @Override
@@ -39,7 +44,17 @@ public class Cart extends AppCompatActivity implements ICartView{
 
         setupView();
 
+        setUpEvents();
+    }
 
+    private void setUpEvents() {
+        txtCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), Address.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupView() {

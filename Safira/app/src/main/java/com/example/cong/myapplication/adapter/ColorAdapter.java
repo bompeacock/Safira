@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.model.Color;
+import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,9 +27,15 @@ public class ColorAdapter extends RecyclerView.Adapter {
 
     private List<Color> colors;
 
+    private IImageProduct IimageProduct;
     public ColorAdapter(Context context, List<Color> colors) {
         this.context = context;
         this.colors = colors;
+        this.IimageProduct = (IImageProduct) context;
+    }
+
+    public interface IImageProduct{
+        public void setImageProduct(int productId);
     }
 
     @Override
@@ -41,11 +48,22 @@ public class ColorAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ColorViewHolder colorViewHolder = (ColorViewHolder) holder;
 
-        String url = colors.get(position).getPath();
+        final Color color = colors.get(position);
+
+        String url = Constant.IMAGE_URL_COLOR + color.getPath();
 
         Picasso.with(context).load(url)
                 .placeholder(R.drawable.progress)
         .into(colorViewHolder.imgColor);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IimageProduct.setImageProduct(color.getId());
+            }
+        });
+
+
     }
 
     @Override

@@ -23,4 +23,7 @@ public interface IRequestSingleImage {
 
     @GET("single-image/search")
     Call<List<ResultProducByGroupAndType>> search(@Query("keyword") String keyword, @Query("location") boolean location);
+
+    @GET("single-image/findForCart")
+    Call<ResultDetails>  getInfoFromColor(@Query("productId") int productId);
 }

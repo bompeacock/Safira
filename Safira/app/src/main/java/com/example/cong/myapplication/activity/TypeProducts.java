@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.cong.myapplication.R;
+import com.example.cong.myapplication.adapter.ColorMiniAdapter;
 import com.example.cong.myapplication.adapter.InsideSafiraAdapter;
 import com.example.cong.myapplication.interfaceView.ITypeProductsView;
 import com.example.cong.myapplication.model.Banner;
+import com.example.cong.myapplication.model.ResultDetails;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.presenter.TypeProductsPresenter;
 import com.example.cong.myapplication.utils.Constant;
@@ -25,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TypeProducts extends AppCompatActivity implements ITypeProductsView {
+public class TypeProducts extends AppCompatActivity implements ITypeProductsView, ColorMiniAdapter.IMiniColor {
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -51,6 +53,7 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 
     private TypeProductsPresenter typeProductsPresenter;
 
+    private InsideSafiraAdapter insideSafiraAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +90,8 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 
     @Override
     public void loadListProduct(List<ResultProducByGroupAndType> resultProducByGroupAndTypes) {
-        rvProductsType.setAdapter(new InsideSafiraAdapter(this,resultProducByGroupAndTypes));
+        insideSafiraAdapter =new InsideSafiraAdapter(this,resultProducByGroupAndTypes);
+        rvProductsType.setAdapter(insideSafiraAdapter);
 
     }
 
@@ -104,6 +108,11 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
     }
 
     @Override
+    public void loadImage(ResultDetails resultDetails, int position) {
+        insideSafiraAdapter.changeInfoItem(resultDetails, position);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         switch (itemId){
@@ -113,5 +122,10 @@ public class TypeProducts extends AppCompatActivity implements ITypeProductsView
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void updateImageProduct(int id, int position) {
+        typeProductsPresenter.loadDataItemByColor(id,position);
     }
 }

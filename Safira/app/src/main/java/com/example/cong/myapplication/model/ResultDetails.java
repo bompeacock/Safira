@@ -7,10 +7,18 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ResultDetails {
+
+    @SerializedName("code")
+    private String code;
+
     @SerializedName("path")
     private String path;
 
     public String getPath() {
         return path;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

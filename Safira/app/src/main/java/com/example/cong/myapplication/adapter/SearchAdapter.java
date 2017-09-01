@@ -63,7 +63,7 @@ public class SearchAdapter extends RecyclerView.Adapter {
 
         List<Color> listColor = resultProducByGroupAndTypes.get(position).getColors();
 
-        ColorMiniAdapter colorAdapter = new ColorMiniAdapter(listColor,context);
+        ColorMiniAdapter colorAdapter = new ColorMiniAdapter(listColor,context,position+1);
         searchViewHolder.rvColor.setAdapter(colorAdapter);
         searchViewHolder.btnAddToFavorite.setBackgroundResource(R.drawable.btndislike);
 

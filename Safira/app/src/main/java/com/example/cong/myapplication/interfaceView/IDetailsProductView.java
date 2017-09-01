@@ -1,5 +1,7 @@
 package com.example.cong.myapplication.interfaceView;
 
+import com.example.cong.myapplication.model.Color;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,6 @@ import java.util.List;
 public interface IDetailsProductView {
     void loadViewImagesDetails(List<String> urlList);
     void loadViewInfoProduct();
-    void loadViewProductColor();
+    void loadViewProductColor(List<Color> colors);
     void loadViewRecommandation();
 }

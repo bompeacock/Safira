@@ -13,6 +13,7 @@ import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.activity.DetailsProduct;
 import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
+import com.example.cong.myapplication.model.ResultDetails;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.utils.Constant;
 import com.squareup.picasso.Picasso;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by Cong on 30/05/2017.
  */
 
-public class InsideSafiraAdapter extends RecyclerView.Adapter {
+public class InsideSafiraAdapter extends RecyclerView.Adapter{
     Context context;
     List<ResultProducByGroupAndType> resultProducByGroupAndTypes;
 
@@ -56,7 +57,7 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
 
         List<Color> listColor = resultProducByGroupAndTypes.get(position).getColors();
 
-        ColorMiniAdapter colorAdapter = new ColorMiniAdapter(listColor,context);
+        ColorMiniAdapter colorAdapter = new ColorMiniAdapter(listColor,context,position);
         viewHolder.rvColor.setAdapter(colorAdapter);
 
         viewHolder.txtProductName.setText(product.getName());
@@ -70,12 +71,21 @@ public class InsideSafiraAdapter extends RecyclerView.Adapter {
         });
 
 
+
     }
 
     @Override
     public int getItemCount() {
         return resultProducByGroupAndTypes.size();
     }
+
+    public void changeInfoItem(ResultDetails resultDetails, int position) {
+        resultProducByGroupAndTypes.get(position).getProduct().setCode(resultDetails.getCode());
+        resultProducByGroupAndTypes.get(position).getProduct().setUrlImage(resultDetails.getPath());
+        notifyItemChanged(position);
+    }
+
+
     public class InsideSafiraViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.rvColor)
         RecyclerView rvColor;

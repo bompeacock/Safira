@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class Color {
     @SerializedName("id")
     private int id;
-    @SerializedName("path")
+    @SerializedName("color")
     private String path;
 
     public Color(int id, String path) {

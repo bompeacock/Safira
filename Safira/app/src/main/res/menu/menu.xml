@@ -8,8 +8,8 @@
         app:showAsAction="ifRoom"
         android:title="searchIcon" />
     <item
-        android:id="@+id/mnNotification"
-        android:icon="@drawable/notification"
+        android:id="@+id/mnFavorite"
+        android:icon="@drawable/btndislike"
         app:showAsAction="ifRoom"
         android:title="notificationIcon" />
     <item

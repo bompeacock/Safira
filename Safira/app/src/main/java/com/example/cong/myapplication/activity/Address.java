@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.cong.myapplication.R;
 
@@ -33,6 +36,11 @@ public class Address extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.btnBack)
+    Button btnBack;
+
+    @BindView(R.id.btnNextStep)
+    Button btnNextStep;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,17 @@ public class Address extends AppCompatActivity {
         setupViews();
 
         setupFloatingLabelError();
+
+        setUpEvent();
+    }
+
+    private void setUpEvent() {
+        btnNextStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),OrderDetails.class));
+            }
+        });
     }
 
     private void setupViews() {

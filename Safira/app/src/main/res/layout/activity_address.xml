@@ -111,7 +111,7 @@
             android:background="@color/colorPrimaryDark"
             />
         <Button
-            android:id="@+id/btnBuyNow"
+            android:id="@+id/btnNextStep"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"

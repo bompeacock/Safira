@@ -51,4 +51,28 @@ public class Product {
     public int getPrice() {
         return price;
     }
+
+    public void setIdSingleImg(int idSingleImg) {
+        this.idSingleImg = idSingleImg;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

@@ -15,13 +15,12 @@ import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.presenter.DetailsProductPresenter;
 import com.example.cong.myapplication.utils.PicassoUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailsProduct extends AppCompatActivity implements PickDetailsImageProductAdapter.IClicklistener, IDetailsProductView {
+public class DetailsProduct extends AppCompatActivity implements PickDetailsImageProductAdapter.IClicklistener, IDetailsProductView,ColorAdapter.IImageProduct {
 
     @BindView(R.id.img_details_product)
     ImageView mImageProduct;
@@ -52,13 +51,7 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
         setupView();
 
-        //fill data image color
-        List<Color> colors = new ArrayList<>();
-        colors.add(new Color(1,"http://vividlinen.com/images/product_color_box_main/thumb/color_20141114103634_11818.jpg"));
-        colors.add(new Color(2,"http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
-        colors.add(new Color(3,"http://vividlinen.com/images/product_color_box_main/thumb/p3431_20140801084539_17147.jpg"));
-        ColorAdapter colorAdapter = new ColorAdapter(this,colors);
-        rvImgColor.setAdapter(colorAdapter);
+
 
         //fill data rv recommandation
 //        MissyItemAdapter missyItemAdapter  = new MissyItemAdapter(this,);
@@ -76,7 +69,7 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
         //fill data layout image product
         detailsProductPresenter.loadDataImagesProduct(code);
-
+        detailsProductPresenter.loadDataImageColor(code);
     }
 
     @Override
@@ -110,12 +103,21 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
     }
 
     @Override
-    public void loadViewProductColor() {
+    public void loadViewProductColor(List<Color> colors) {
+        //fill data image color
+
+        ColorAdapter colorAdapter = new ColorAdapter(this,colors);
+        rvImgColor.setAdapter(colorAdapter);
 
     }
 
     @Override
     public void loadViewRecommandation() {
 
+    }
+
+    @Override
+    public void setImageProduct(int productId) {
+        detailsProductPresenter.loadDataCode(productId);
     }
 }

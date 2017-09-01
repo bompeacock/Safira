@@ -27,11 +27,19 @@ public class ColorMiniAdapter extends RecyclerView.Adapter {
 
     private Context context;
 
-    public ColorMiniAdapter(List<Color> colors, Context context) {
+    private int positionProduct;
+
+    IMiniColor iMiniColor;
+    public ColorMiniAdapter(List<Color> colors, Context context, final int positionProduct) {
         this.colors = colors;
         this.context = context;
-    }
+        this.positionProduct = positionProduct;
 
+        this.iMiniColor = (IMiniColor) context;
+    }
+    public interface IMiniColor{
+        void updateImageProduct(int id, int position);
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_color_mini,parent,false);
@@ -43,8 +51,17 @@ public class ColorMiniAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ColorMiniViewHolder colorMiniViewHolder = (ColorMiniViewHolder) holder;
 
+        final Color color = colors.get(position);
+
         Picasso.with(context).load(Constant.IMAGE_URL_COLOR+colors.get(position).getPath())
                 .into(colorMiniViewHolder.imgColorMini);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iMiniColor.updateImageProduct(color.getId(),positionProduct);
+            }
+        });
     }
 
     @Override

@@ -2,8 +2,10 @@ package com.example.cong.myapplication.presenter;
 
 import com.example.cong.myapplication.api.IRequestForBanner;
 import com.example.cong.myapplication.api.IRequestForGroupAndType;
+import com.example.cong.myapplication.api.IRequestSingleImage;
 import com.example.cong.myapplication.interfaceView.ITypeProductsView;
 import com.example.cong.myapplication.model.Banner;
+import com.example.cong.myapplication.model.ResultDetails;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.model.SearchRequest;
 import com.example.cong.myapplication.utils.RetrofitUtils;
@@ -26,6 +28,7 @@ public class TypeProductsPresenter  {
 
     IRequestForBanner requestForBanner;
 
+    IRequestSingleImage requestSingleImage;
 
     public TypeProductsPresenter(ITypeProductsView typeProductsView) {
         this.typeProductsView = typeProductsView;
@@ -34,6 +37,7 @@ public class TypeProductsPresenter  {
 
         requestForBanner = RetrofitUtils.getRetrofitWithRealServer().create(IRequestForBanner.class);
 
+        requestSingleImage = RetrofitUtils.getRetrofitWithRealServer().create(IRequestSingleImage.class);
     }
 
     public void loadDataBanner(int groupId, int typeId) {
@@ -69,5 +73,20 @@ public class TypeProductsPresenter  {
 
             }
         });
+    }
+
+    public void loadDataItemByColor(int id, final int position) {
+        requestSingleImage.getInfoFromColor(id).enqueue(new Callback<ResultDetails>() {
+            @Override
+            public void onResponse(Call<ResultDetails> call, Response<ResultDetails> response) {
+                typeProductsView.loadImage(response.body(),position);
+            }
+
+            @Override
+            public void onFailure(Call<ResultDetails> call, Throwable t) {
+
+            }
+        });
+
     }
 }
