@@ -2,11 +2,13 @@ package com.example.cong.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Cong on 05/05/2017.
  */
 
-public class Product {
+public class Product implements Serializable{
     @SerializedName("id")
     private int idSingleImg;
     @SerializedName("productName")

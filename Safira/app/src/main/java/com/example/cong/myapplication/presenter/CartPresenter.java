@@ -52,4 +52,10 @@ public class CartPresenter {
                 .child(key).removeValue();
         carView.removeItemCart(position);
     }
+
+    public void updateQuantity(String key, int quantity, int position) {
+        databaseReference.child(user.getUid()).child(StructureFirebase.CART)
+                .child(key).child("quantity").setValue(quantity);
+        carView.reloadView(quantity,position);
+    }
 }

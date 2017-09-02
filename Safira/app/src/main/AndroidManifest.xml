@@ -23,11 +23,14 @@
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.TypeProducts" />
-        <activity android:name=".activity.Address" />
+        <activity
+            android:name=".activity.Address"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".activity.Cart" />
         <activity android:name=".activity.Search" />
         <activity android:name=".activity.Favorite" />
-        <activity android:name=".activity.OrderDetails"></activity>
+        <activity android:name=".activity.OrderDetails" />
+        <activity android:name=".activity.Thank"></activity>
     </application>
 
 </manifest>

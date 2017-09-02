@@ -13,4 +13,7 @@ public interface ICartView {
     void loadFailView();
 
     void removeItemCart(int position);
+
+    void reloadView(int quantity, int position);
+
 }

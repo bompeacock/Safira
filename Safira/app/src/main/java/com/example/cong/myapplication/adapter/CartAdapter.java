@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -48,7 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter {
 
     public interface ICartEvents{
         void removeItemCart(String key, int position);
-        void updateQuantity(String key, int quantity);
+        void updateQuantity(String key, int quantity, int position);
     }
 
     @Override
@@ -60,17 +61,31 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         Product product = productInCarts.get(position);
-        CartViewHolder cartViewHolder = (CartViewHolder) holder;
+        final CartViewHolder cartViewHolder = (CartViewHolder) holder;
         cartViewHolder.txtProductName.setText(product.getName());
         cartViewHolder.txtStyle.setText(product.getCode());
         cartViewHolder.txtSize.setText(product.getSize());
         cartViewHolder.txtPrice.setText("$"+product.getPrice());
-        PicassoUtils.loadImage(context, Constant.IMAGE_URL_SINGLE_IMAGE + product.getUrlImage(),cartViewHolder.imgProduct);
+        cartViewHolder.spnQuantity.setSelection(product.getQuantity()-1);
+        PicassoUtils.loadImageAndResizeForCart(context, Constant.IMAGE_URL_SINGLE_IMAGE + product.getUrlImage(),cartViewHolder.imgProduct);
 
         cartViewHolder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 iCartEvents.removeItemCart(listKey.get(position),position);
+            }
+        });
+        cartViewHolder.spnQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                iCartEvents.updateQuantity(listKey.get(position)
+                        ,Integer.parseInt(cartViewHolder.spnQuantity.getSelectedItem().toString())
+                        ,position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 

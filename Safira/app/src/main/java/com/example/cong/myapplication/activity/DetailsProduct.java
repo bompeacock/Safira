@@ -178,7 +178,16 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
     @Override
     public void showMessageAddToCart(String message) {
-        Snackbar.make(this.getCurrentFocus(),message,Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(this.getCurrentFocus(),message,Snackbar.LENGTH_LONG)
+                .setAction("GO TO BAG", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(view.getContext(),Cart.class));
+                    }
+                })
+                .setActionTextColor(getResources().getColor(R.color.button_goto_bag))
+                .setDuration(3000)
+                .show();
     }
 
     @Override

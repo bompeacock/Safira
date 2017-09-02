@@ -31,9 +31,10 @@
             android:layout_alignParentRight="true">
 
             <TextView
+                android:id="@+id/txtTotalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$150"
+                tools:text="$150"
                 android:textStyle="bold"
                 android:textSize="24dp"
                 />

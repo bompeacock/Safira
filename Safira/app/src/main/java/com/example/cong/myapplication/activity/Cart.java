@@ -12,9 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.CartAdapter;
 import com.example.cong.myapplication.interfaceView.ICartView;
+import com.example.cong.myapplication.model.CartOrder;
+import com.example.cong.myapplication.model.OrderAddress;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.presenter.CartPresenter;
 
@@ -34,9 +37,23 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
     @BindView(R.id.txtCheckOut)
     TextView txtCheckOut;
 
+    @BindView(R.id.txtTotalPrice)
+    TextView txtTotalPrice;
+
     CartPresenter cartPresenter;
 
     CartAdapter cartAdapter;
+
+    CartOrder cartOrder;
+
+    MaterialDialog.Builder progressBuilder;
+
+    MaterialDialog progress;
+
+    AlertDialog alert;
+
+    AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +62,10 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
         ButterKnife.bind(this);
 
         cartPresenter = new CartPresenter(this);
+
+        cartOrder = new CartOrder();
+        //initialize Address Object
+        cartOrder.setOrderAddress(new OrderAddress());
 
         setupView();
 
@@ -56,9 +77,11 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), Address.class);
+                intent.putExtra("cartOrder",cartOrder);
                 startActivity(intent);
             }
         });
+
     }
 
     private void setupView() {
@@ -69,6 +92,13 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        progressBuilder = new MaterialDialog.Builder(this)
+                .content("Please wait ...")
+                .progress(true, 0);
+
+
+        progress = progressBuilder.build();
+        progress.show();
         cartPresenter.loadDataCart();
 
 
@@ -93,6 +123,10 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
         rvProductCart.setAdapter(cartAdapter);
         rvProductCart.setLayoutManager(new LinearLayoutManager(this));
 
+        cartOrder.setOrderDetails(cart);
+        txtTotalPrice.setText(cartOrder.getTotalPrice());
+
+        progress.dismiss();
     }
 
     @Override
@@ -105,23 +139,38 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
     }
 
     @Override
+    public void reloadView(int quantity, int position) {
+        cartOrder.getOrderDetails().get(position).setQuantity(quantity);
+        txtTotalPrice.setText(cartOrder.getTotalPrice());
+    }
+
+
+    @Override
     public void removeItemCart(final String key, final int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Cart.this)
+        builder = new AlertDialog.Builder(Cart.this)
                 .setTitle("Delete a product")
                 .setMessage("Do you want to delete your product?")
+                .setCancelable(true)
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         cartPresenter.deleteItemCart(key,position);
 
                     }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
                 });
-        AlertDialog alert = builder.create();
+        alert = builder.create();
         alert.show();
     }
 
     @Override
-    public void updateQuantity(String key, int quantity) {
+    public void updateQuantity(String key, int quantity, int position) {
+        cartPresenter.updateQuantity(key,quantity, position);
 
     }
 }
