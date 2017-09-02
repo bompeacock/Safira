@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.ColorAdapter;
 import com.example.cong.myapplication.adapter.ColorMiniAdapter;
@@ -82,18 +83,17 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
 
         setUpEvents();
 
-        //fill data rv recommandation
-//        MissyItemAdapter missyItemAdapter  = new MissyItemAdapter(this,);
-//        rvRecommend.setAdapter(missyItemAdapter);
-//        GridLayoutManager manager  = new GridLayoutManager(this,2);
-//        rvRecommend.setLayoutManager(manager);
+
     }
 
     private void setUpEvents() {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                detailsProductPresenter.addToCart(product);
+                if(product.getSize()!=null&&!"".equals(product.getSize())){
+                      detailsProductPresenter.addToCart(product);
+                }else detailsProductPresenter.loadDataSize(product.getCode());
+
             }
         });
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +106,8 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
             @Override
             public void onClick(View view) {
                 btnLike.setBackgroundResource(R.drawable.btnlike);
-                Snackbar.make(view,"Add to Favorite successfully",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view,"Add to Favorite successfully",Snackbar.LENGTH_LONG)
+                        .show();
 
             }
         });
@@ -181,8 +182,31 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
     }
 
     @Override
+    public void loadViewChoseSize(final List<String> body) {
+        new MaterialDialog.Builder(this)
+                .title("Pick Size")
+                .items(body)
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        /**
+                         * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                         * returning false here won't allow the newly selected radio button to actually be selected.
+                         **/
+                        if(which!=-1){
+                            product.setSize(body.get(which));
+                        }
+                        return true;
+                    }
+                })
+                .positiveText("Close")
+                .show();
+    }
+
+    @Override
     public void setImageProduct(int productId) {
         detailsProductPresenter.loadDataCode(productId);
+
     }
 
     @Override

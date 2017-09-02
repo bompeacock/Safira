@@ -1,6 +1,6 @@
 package com.example.cong.myapplication.interfaceView;
 
-import com.example.cong.myapplication.model.ProductInCart;
+import com.example.cong.myapplication.model.Product;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import java.util.List;
  */
 
 public interface ICartView {
-    public void loadViewCart(List<ProductInCart> cart);
-    public void loadFailView();
+    void loadViewCart(List<Product> cart,List<String> list);
+    void loadFailView();
+
+    void removeItemCart(int position);
 }

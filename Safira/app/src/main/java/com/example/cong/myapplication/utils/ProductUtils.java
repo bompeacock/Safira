@@ -19,4 +19,12 @@ public class ProductUtils {
         }
         return list;
     }
+    public static List<String> getAllKeyCartOnFireBase(DataSnapshot snapshot){
+        List<String> list  = new ArrayList<>();
+        for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+            String post = postSnapshot.getKey();
+            list.add(post);
+        }
+        return list;
+    }
 }

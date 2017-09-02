@@ -7,7 +7,9 @@ import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultGetCode;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
+import com.example.cong.myapplication.model.Size;
 import com.example.cong.myapplication.utils.RetrofitUtils;
+import com.example.cong.myapplication.utils.StructureFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,7 @@ public class DetailsProductPresenter {
     IRequestSingleImage requestSingleImage;
 
     DatabaseReference database;
+
     FirebaseUser user ;
 
     public DetailsProductPresenter(IDetailsProductView detailsProductView) {
@@ -128,7 +131,7 @@ public class DetailsProductPresenter {
     }
 
     public void addToCart(final Product product) {
-        database.child("cart").push().setValue(product);
+        database.child(StructureFirebase.CART).push().setValue(product);
         detailsProductView.showMessageAddToCart("Add to cart successfully");
 //        database.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
@@ -149,5 +152,28 @@ public class DetailsProductPresenter {
 //        });
 
 
+    }
+
+    public void loadDataSize(String code) {
+        requestForDetails.getSizes(code).enqueue(new Callback<List<Size>>() {
+            @Override
+            public void onResponse(Call<List<Size>> call, Response<List<Size>> response) {
+                handleLoadSizes(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Size>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void handleLoadSizes(List<Size> body) {
+        List<String> list  = new ArrayList<>();
+        for (Size size : body){
+            list.add(size.getSize());
+        }
+        detailsProductView.loadViewChoseSize(list);
     }
 }

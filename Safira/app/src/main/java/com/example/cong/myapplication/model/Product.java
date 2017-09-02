@@ -20,6 +20,8 @@ public class Product {
     @SerializedName("dolar")
     private int price;
 
+    private String size;
+    private int quantity = 1;
 
     public Product() {
     }
@@ -74,6 +76,22 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

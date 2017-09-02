@@ -2,6 +2,7 @@ package com.example.cong.myapplication.api;
 
 import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.ResultGetCode;
+import com.example.cong.myapplication.model.Size;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public interface IRequestForDetails {
 
     @GET("product/get-product-by-id")
     Call<ResultGetCode> getCode(@Query("productId") int groupId);
+
+    @GET("product/sizes")
+    Call<List<Size>>  getSizes(@Query("imageCode") String imageCode);
+
 
 
 }

@@ -17,4 +17,6 @@ public interface IDetailsProductView {
     void loadViewRecommandation(List<ResultProducByGroupAndType> products);
 
     void showMessageAddToCart(String message);
+
+    void loadViewChoseSize(List<String> body);
 }
