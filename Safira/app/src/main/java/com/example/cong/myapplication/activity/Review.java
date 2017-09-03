@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,13 +72,28 @@ public class Review extends AppCompatActivity implements IReviewVIew {
     }
 
     private void setUpViews() {
+        toolbar.setTitle("Review");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         listReviews = new ArrayList<>();
         reviewAdapter = new ReviewAdapter(this,listReviews);
         rvReview.setAdapter(reviewAdapter);
         rvReview.setLayoutManager(new LinearLayoutManager(this));
         reviewPresenter.loadDataReview(imageCode);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId){
+            case android.R.id.home:
+                finish();
+                break;
 
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void loadViewReview(List<com.example.cong.myapplication.model.Review> reviews) {
         reviewAdapter.addNewData(reviews);

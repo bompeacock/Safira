@@ -6,33 +6,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.cong.myapplication.activity.Review">
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvReview"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edtReview"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:layout_gravity="center_vertical"/>
-        <Button
-            android:id="@+id/btnComment"
-            android:textSize="11dp"
-            android:hint="Your comment ..."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="comment"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include layout="@layout/toolbar"
+                android:id="@+id/toolbar"/>
 
-    </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvReview"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"/>
+
+            <RelativeLayout
+                android:padding="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edtReview"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:elevation="4dp"
+                    android:hint="Your comment ..."
+                    android:layout_gravity="center_vertical"/>
+                <Button
+                    android:id="@+id/btnComment"
+                    android:layout_alignParentRight="true"
+                    android:textSize="11dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/comment"
+                    android:layout_width="52dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>
