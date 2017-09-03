@@ -20,6 +20,7 @@ import com.example.cong.myapplication.adapter.ColorMiniAdapter;
 import com.example.cong.myapplication.adapter.InsideSafiraAdapter;
 import com.example.cong.myapplication.adapter.PickDetailsImageProductAdapter;
 import com.example.cong.myapplication.interfaceView.IDetailsProductView;
+import com.example.cong.myapplication.model.CartOrder;
 import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
@@ -99,15 +100,19 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),Address.class));
+                if(product.getSize()!=null&&!"".equals(product.getSize())){
+                    detailsProductPresenter.loadDataForPurchasing(product);
+                }else detailsProductPresenter.loadDataSize(product.getCode());
             }
         });
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnLike.setBackgroundResource(R.drawable.btnlike);
-                Snackbar.make(view,"Add to Favorite successfully",Snackbar.LENGTH_LONG)
-                        .show();
+                Intent intent = new Intent(view.getContext(),Review.class);
+                intent.putExtra("imageCode", product.getCode());
+                startActivity(intent);
+//                Snackbar.make(view,"Add to Favorite successfully",Snackbar.LENGTH_LONG)
+//                        .show();
 
             }
         });
@@ -210,6 +215,13 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
                 })
                 .positiveText("Close")
                 .show();
+    }
+
+    @Override
+    public void processForPurchasing(CartOrder cartOrder) {
+        Intent intent = new Intent(this, Address.class);
+        intent.putExtra("cartOrder",cartOrder);
+        startActivity(intent);
     }
 
     @Override

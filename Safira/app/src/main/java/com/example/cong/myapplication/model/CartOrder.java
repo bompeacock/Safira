@@ -11,6 +11,7 @@ public class CartOrder implements Serializable{
     public List<Product> orderDetails;
     public OrderAddress orderAddress;
     public String totalPrice;
+    public int type;
 
     public List<Product> getOrderDetails() {
         return orderDetails;
@@ -30,6 +31,14 @@ public class CartOrder implements Serializable{
 
     public String getTotalPrice() {
         return caculateTotalPrice();
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     private String caculateTotalPrice() {

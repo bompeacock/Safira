@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+    <item
+        android:id="@+id/mnSearch"
+        android:icon="@drawable/search"
+        app:showAsAction="ifRoom"
+        android:title="searchIcon" />
+
+    <item
+        android:id="@+id/mnCart"
+        android:icon="@drawable/cart"
+        app:showAsAction="ifRoom"
+        android:title="cartIcon" />
+</menu>

@@ -5,5 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cong.myapplication.activity.Thank">
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+    <TextView
+        android:id="@+id/txtOrder"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="40dp"
+        android:fontFamily="@string/you_are_updated_title"
+        android:textAlignment="center"
+        android:text="Order Successfully"/>
+    <TextView
+        android:layout_below="@id/txtOrder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:textSize="40dp"
+        android:fontFamily="@string/you_are_updated_title"
+        android:textAlignment="center"
+        android:text="Thank you for purchasing"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnContinueShopping"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="CONTINUE SHOPPING"/>
 
 </RelativeLayout>

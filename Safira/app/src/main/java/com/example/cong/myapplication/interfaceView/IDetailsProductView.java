@@ -1,5 +1,6 @@
 package com.example.cong.myapplication.interfaceView;
 
+import com.example.cong.myapplication.model.CartOrder;
 import com.example.cong.myapplication.model.Color;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
@@ -19,4 +20,6 @@ public interface IDetailsProductView {
     void showMessageAddToCart(String message);
 
     void loadViewChoseSize(List<String> body);
+
+    void processForPurchasing(CartOrder cartOrder);
 }

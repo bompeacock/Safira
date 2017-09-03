@@ -30,7 +30,9 @@
         <activity android:name=".activity.Search" />
         <activity android:name=".activity.Favorite" />
         <activity android:name=".activity.OrderDetails" />
-        <activity android:name=".activity.Thank"></activity>
+        <activity android:name=".activity.Thank" />
+        <activity android:name=".activity.Review"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>

@@ -3,11 +3,13 @@ package com.example.cong.myapplication.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import com.example.cong.myapplication.model.CartOrder;
 import com.example.cong.myapplication.model.OrderAddress;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.presenter.CartPresenter;
+import com.example.cong.myapplication.utils.OrderConstants;
 
 import java.util.List;
 
@@ -76,9 +79,13 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
         txtCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), Address.class);
-                intent.putExtra("cartOrder",cartOrder);
-                startActivity(intent);
+                if(cartOrder.getOrderDetails().size()>0){
+                    Intent intent = new Intent(view.getContext(), Address.class);
+                    intent.putExtra("cartOrder",cartOrder);
+                    startActivity(intent);
+                }else Snackbar.make(view,"No product in cart",Snackbar.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -112,9 +119,21 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.mnFavorite:
+                Intent intent = new Intent(this, Favorite.class);
+                startActivity(intent);
+                break;
+            case R.id.mnSearch:
+                startActivity(new Intent(this,Search.class));
+                break;
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_for_cart,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -140,6 +159,7 @@ public class Cart extends AppCompatActivity implements ICartView, CartAdapter.IC
 
     @Override
     public void reloadView(int quantity, int position) {
+        cartOrder.setType(OrderConstants.ORDER_FROM_CART);
         cartOrder.getOrderDetails().get(position).setQuantity(quantity);
         txtTotalPrice.setText(cartOrder.getTotalPrice());
     }

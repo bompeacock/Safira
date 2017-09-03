@@ -1,22 +1,26 @@
 package com.example.cong.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.OrderDetailsAdapter;
+import com.example.cong.myapplication.interfaceView.IOrderDetailsView;
 import com.example.cong.myapplication.model.CartOrder;
+import com.example.cong.myapplication.presenter.OrderDetailsPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OrderDetails extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity implements IOrderDetailsView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -34,6 +38,10 @@ public class OrderDetails extends AppCompatActivity {
     Button btnConfirm;
 
     CartOrder cartOrder;
+
+    OrderDetailsPresenter orderDetailsPresenter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +51,26 @@ public class OrderDetails extends AppCompatActivity {
 
         cartOrder = (CartOrder) getIntent().getSerializableExtra("cartOrder");
 
+        orderDetailsPresenter = new OrderDetailsPresenter(this);
+
         setUpViews();
+
+        setUpEvents();
+    }
+
+    private void setUpEvents() {
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderDetailsPresenter.submitOrderToBackEndAndFireBase(cartOrder);
+            }
+        });
     }
 
     private void setUpViews() {
         //toolbar
 
-        toolbar.setTitle("Oder Details");
+        toolbar.setTitle("Order Details");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -78,5 +99,10 @@ public class OrderDetails extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void endPurchasing() {
+        startActivity(new Intent(this,Thank.class));
     }
 }

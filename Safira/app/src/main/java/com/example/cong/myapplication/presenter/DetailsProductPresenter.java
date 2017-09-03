@@ -3,11 +3,14 @@ package com.example.cong.myapplication.presenter;
 import com.example.cong.myapplication.api.IRequestForDetails;
 import com.example.cong.myapplication.api.IRequestSingleImage;
 import com.example.cong.myapplication.interfaceView.IDetailsProductView;
+import com.example.cong.myapplication.model.CartOrder;
 import com.example.cong.myapplication.model.Color;
+import com.example.cong.myapplication.model.OrderAddress;
 import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultGetCode;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.model.Size;
+import com.example.cong.myapplication.utils.OrderConstants;
 import com.example.cong.myapplication.utils.RetrofitUtils;
 import com.example.cong.myapplication.utils.StructureFirebase;
 import com.google.firebase.auth.FirebaseAuth;
@@ -175,5 +178,15 @@ public class DetailsProductPresenter {
             list.add(size.getSize());
         }
         detailsProductView.loadViewChoseSize(list);
+    }
+
+    public void loadDataForPurchasing(Product product) {
+        List<Product> productList = new ArrayList<Product>();
+        productList.add(product);
+        CartOrder cartOrder = new CartOrder();
+        cartOrder.setOrderDetails(productList);
+        cartOrder.setOrderAddress(new OrderAddress());
+        cartOrder.setType(OrderConstants.ORDER_FROM_DETAILS);
+        detailsProductView.processForPurchasing(cartOrder);
     }
 }
