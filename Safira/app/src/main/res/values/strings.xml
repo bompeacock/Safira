@@ -11,4 +11,7 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string name="facebook_app_id">1689460017740193</string>
+    <string name="fb_login_protocol_scheme">fb1689460017740193</string>
 </resources>

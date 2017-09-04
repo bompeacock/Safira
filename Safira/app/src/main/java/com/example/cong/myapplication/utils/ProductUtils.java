@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public class ProductUtils {
+    public final static String HAVE_EXIST = "Have existed";
     public static List<Product> getAllProductCartOnFireBase(DataSnapshot snapshot){
         List<Product> list  = new ArrayList<>();
         for (DataSnapshot postSnapshot: snapshot.getChildren()) {

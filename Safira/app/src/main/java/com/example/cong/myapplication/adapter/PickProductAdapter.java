@@ -22,22 +22,22 @@ import java.util.List;
  * Created by CongNV4 on 5/21/2017.
  */
 public class PickProductAdapter extends PagerAdapter {
-    private List<ResultPickProductAndRec> resultPickProductAndRecs;
+    private List<ResultPickProductAndRec> recList;
 
     private Context context;
     private LayoutInflater mLayoutInflater;
 
 
-    public PickProductAdapter(final Context context , List<ResultPickProductAndRec> resultPickProductAndRecs ) {
+    public PickProductAdapter(final Context context , List<ResultPickProductAndRec> recList ) {
         mLayoutInflater = LayoutInflater.from(context);
-        this.resultPickProductAndRecs = resultPickProductAndRecs;
+        this.recList = recList;
         this.context = context;
     }
 
 
     @Override
     public int getCount() {
-        return resultPickProductAndRecs.size();
+        return recList.size();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PickProductAdapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view = mLayoutInflater.inflate(R.layout.item, container, false);
 
-        final ResultPickProductAndRec resultPickProductAndRec = resultPickProductAndRecs.get(position);
+        final ResultPickProductAndRec resultPickProductAndRec = recList.get(position);
 
         final TextView txt = (TextView) view.findViewById(R.id.txt_item);
         txt.setText(resultPickProductAndRec.getProductName());
@@ -80,6 +80,13 @@ public class PickProductAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
+    public void addNewData(List<ResultPickProductAndRec> resultPickProductAndRecs) {
+        recList.clear();
+        recList.addAll(resultPickProductAndRecs);
+        notifyDataSetChanged();
+
+
+    }
 }
 
 

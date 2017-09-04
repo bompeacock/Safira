@@ -9,6 +9,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.MissyItemAdapter;
@@ -29,6 +31,13 @@ public class MissyFragment extends Fragment implements IGroupProductView{
 
     @BindView(R.id.rvMissy)
     RecyclerView rvMissy;
+
+
+    @BindView(R.id.pbLoading)
+    ProgressBar pbLoading;
+
+    @BindView(R.id.layoutCollection)
+    LinearLayout layoutCollection;
 
 //    @BindView(R.id.fab)
 //    FloatingActionButton fab;
@@ -59,9 +68,14 @@ public class MissyFragment extends Fragment implements IGroupProductView{
         View view = inflater.inflate(R.layout.fragment_tab_missy,container,false);
         ButterKnife.bind(this,view);
 
-        groupProductPresenter.loadData(groupId);
+        setUpViews();
 
         return view;
+
+    }
+
+    private void setUpViews() {
+        groupProductPresenter.loadData(groupId);
 
     }
 
@@ -74,6 +88,10 @@ public class MissyFragment extends Fragment implements IGroupProductView{
         rvMissy.setLayoutManager(staggeredGridLayoutManager);
 
         rvMissy.setAdapter(missyItemAdapter);
+
+        layoutCollection.setVisibility(View.VISIBLE);
+        pbLoading.setVisibility(View.GONE);
+
 
     }
 

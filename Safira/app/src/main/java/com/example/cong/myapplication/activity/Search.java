@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.ColorMiniAdapter;
@@ -44,6 +45,9 @@ public class Search extends AppCompatActivity implements ISearchView, ColorMiniA
 
         ButterKnife.bind(this);
 
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         searchPresenter = new SearchPresenter(this);
 
         setUpViews();
@@ -69,12 +73,11 @@ public class Search extends AppCompatActivity implements ISearchView, ColorMiniA
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
-                searchView.clearFocus();
                 return true;
             }
 

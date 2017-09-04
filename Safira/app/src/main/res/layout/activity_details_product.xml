@@ -36,11 +36,11 @@
 
                     <ImageView
                         android:id="@+id/btnLike"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:scaleType="centerCrop"
                         android:layout_alignParentRight="true"
-                        android:src="@drawable/btndislike"/>
+                        android:src="@drawable/ic_share"/>
 
                     <ImageView
                         android:id="@+id/img_details_product"
@@ -48,9 +48,6 @@
                         android:layout_height="280dp"
                         android:scaleType="fitCenter"
                         tools:src="@drawable/a"/>
-
-
-
                 </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView

@@ -7,6 +7,5 @@ package com.example.cong.myapplication.utils;
 public class StructureFirebase {
     public final static String CART = "cart";
     public final static String FAVORITE = "favorite";
-    public final static String REVIEW = "review";
 
 }

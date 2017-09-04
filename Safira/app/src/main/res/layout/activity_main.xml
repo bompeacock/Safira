@@ -47,7 +47,9 @@
             android:src="@drawable/icon_user"
             android:layout_margin="8dp"
             app:layout_behavior="com.example.cong.myapplication.utils.FAB_Hide_on_Scroll"
-            />
+            >
+
+        </android.support.design.widget.FloatingActionButton>
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView

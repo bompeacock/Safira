@@ -11,6 +11,12 @@ import android.widget.Toast;
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.interfaceView.ILoginView;
 import com.example.cong.myapplication.presenter.LoginPresenter;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,7 +28,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.BindView;
@@ -36,8 +44,13 @@ public class Login extends AppCompatActivity implements ILoginView{
     @BindView(R.id.btnSign_in)
     SignInButton btnSign_in;
 
+    @BindView(R.id.btnFacebook)
+    LoginButton btnFacebook;
+
     private LoginPresenter mLoginPresenter;
     private GoogleApiClient mGoogleApiClient;
+
+    CallbackManager mCallbackManager;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -52,7 +65,6 @@ public class Login extends AppCompatActivity implements ILoginView{
 
         setEvents();
 
-        boolean logout = getIntent().getBooleanExtra("logout",false);
 
     }
 
@@ -87,6 +99,7 @@ public class Login extends AppCompatActivity implements ILoginView{
     private void setPresenterAndRelated() {
         ButterKnife.bind(this);
 
+        //google
         mLoginPresenter = new LoginPresenter(this);
 
         btnSign_in.setSize(SignInButton.SIZE_STANDARD);
@@ -112,8 +125,59 @@ public class Login extends AppCompatActivity implements ILoginView{
                 .build();
 
 
+        //facebook
+        mCallbackManager = CallbackManager.Factory.create();
+        btnFacebook.setReadPermissions("email", "public_profile");
+        btnFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
 
     }
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startItent();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(Login.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+    }
+
+    private void startItent() {
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
     private void toast() {
         Toast.makeText(this,"connect faild",Toast.LENGTH_LONG).show();
     }
@@ -135,6 +199,8 @@ public class Login extends AppCompatActivity implements ILoginView{
             mLoginPresenter.loginWithGoogle(result);
 
         }
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
 
     }
 

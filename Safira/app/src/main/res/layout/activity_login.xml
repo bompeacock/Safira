@@ -14,13 +14,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo"
+        android:id="@+id/imageView2" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnSign_in"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnFacebook"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/btnSign_in"
+        android:layout_alignStart="@+id/btnSign_in" />
 
 </RelativeLayout>

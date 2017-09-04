@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.cong.myapplication.R;
 import com.example.cong.myapplication.adapter.ReviewAdapter;
@@ -34,7 +34,7 @@ public class Review extends AppCompatActivity implements IReviewVIew {
     EditText edtReview;
 
     @BindView(R.id.btnComment)
-    Button btnComment;
+    ImageView btnComment;
 
 
     ReviewPresenter reviewPresenter;
@@ -67,6 +67,7 @@ public class Review extends AppCompatActivity implements IReviewVIew {
                 Editable editable = edtReview.getText();
                 String commentation = editable.toString();
                 reviewPresenter.addNewReview(imageCode,commentation);
+                edtReview.setText("");
             }
         });
     }

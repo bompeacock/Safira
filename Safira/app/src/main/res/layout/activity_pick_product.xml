@@ -26,4 +26,5 @@
             app:icvp_min_page_scale="0.7"
             app:icvp_min_page_scale_offset="-20dp"
             app:icvp_scroll_duration="600"/>
+
 </LinearLayout>

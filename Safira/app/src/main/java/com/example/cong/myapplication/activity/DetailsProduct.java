@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +27,7 @@ import com.example.cong.myapplication.model.Product;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.presenter.DetailsProductPresenter;
 import com.example.cong.myapplication.utils.PicassoUtils;
+import com.example.cong.myapplication.utils.ProductUtils;
 
 import java.util.List;
 
@@ -107,12 +109,34 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
         });
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),Review.class);
-                intent.putExtra("imageCode", product.getCode());
-                startActivity(intent);
-//                Snackbar.make(view,"Add to Favorite successfully",Snackbar.LENGTH_LONG)
-//                        .show();
+            public void onClick(final View view) {
+                //Creating the instance of PopupMenu
+                final PopupMenu popup = new PopupMenu(view.getContext(), btnLike);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.menu_for_details, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id =  item.getItemId();
+                        switch (id){
+                            case R.id.mnAddToFavorite:
+                                detailsProductPresenter.addToFavorite(product);
+                                break;
+                            case R.id.mnReview:
+                                Intent intent = new Intent(view.getContext(),Review.class);
+                                  intent.putExtra("imageCode", product.getCode());
+                                  startActivity(intent);
+                                break;
+                        }
+                        return true;
+                    }
+                });
+
+                popup.show();
+//
+
 
             }
         });
@@ -213,7 +237,7 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
                         return true;
                     }
                 })
-                .positiveText("Close")
+                .positiveText("Choose")
                 .show();
     }
 
@@ -222,6 +246,23 @@ public class DetailsProduct extends AppCompatActivity implements PickDetailsImag
         Intent intent = new Intent(this, Address.class);
         intent.putExtra("cartOrder",cartOrder);
         startActivity(intent);
+    }
+
+    @Override
+    public void showMessageAddToFavorite(String message) {
+        if(ProductUtils.HAVE_EXIST.equals(message)){
+                Snackbar.make(this.getCurrentFocus(),message,Snackbar.LENGTH_SHORT)
+                        .show();
+        }else  Snackbar.make(this.getCurrentFocus(),message,Snackbar.LENGTH_LONG)
+                .setAction("GO TO FAVORITE", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(view.getContext(),Favorite.class));
+                    }
+                })
+                .setActionTextColor(getResources().getColor(R.color.button_goto_bag))
+                .setDuration(3000)
+                .show();
     }
 
     @Override

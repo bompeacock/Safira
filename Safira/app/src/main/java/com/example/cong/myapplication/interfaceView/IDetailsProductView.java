@@ -22,4 +22,6 @@ public interface IDetailsProductView {
     void loadViewChoseSize(List<String> body);
 
     void processForPurchasing(CartOrder cartOrder);
+
+    void showMessageAddToFavorite(String message);
 }

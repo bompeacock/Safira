@@ -9,7 +9,7 @@ public class Review {
     private String comment;
 
     public String getAuthor() {
-        return author;
+        return "- "+ author +" -";
     }
 
     public void setAuthor(String author) {

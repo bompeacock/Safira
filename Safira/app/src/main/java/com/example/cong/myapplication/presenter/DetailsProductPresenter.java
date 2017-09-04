@@ -11,12 +11,16 @@ import com.example.cong.myapplication.model.ResultGetCode;
 import com.example.cong.myapplication.model.ResultProducByGroupAndType;
 import com.example.cong.myapplication.model.Size;
 import com.example.cong.myapplication.utils.OrderConstants;
+import com.example.cong.myapplication.utils.ProductUtils;
 import com.example.cong.myapplication.utils.RetrofitUtils;
 import com.example.cong.myapplication.utils.StructureFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,23 +140,7 @@ public class DetailsProductPresenter {
     public void addToCart(final Product product) {
         database.child(StructureFirebase.CART).push().setValue(product);
         detailsProductView.showMessageAddToCart("Add to cart successfully");
-//        database.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String message ;
-//                if(!ProductUtils.getAllProductCartOnFireBase(dataSnapshot).contains(product)){
-//                    database.setValue(product);
-//                    message = "Add to cart successfully";
-//                }else message = "Have existed";
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
+
 
 
     }
@@ -188,5 +176,28 @@ public class DetailsProductPresenter {
         cartOrder.setOrderAddress(new OrderAddress());
         cartOrder.setType(OrderConstants.ORDER_FROM_DETAILS);
         detailsProductView.processForPurchasing(cartOrder);
+    }
+
+    public void addToFavorite(final Product product) {
+        database.child(StructureFirebase.FAVORITE)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String message ;
+                if(!ProductUtils.getAllProductCartOnFireBase(dataSnapshot).contains(product)){
+                    database.child(StructureFirebase.FAVORITE).push().setValue(product);
+                    message = "Add to cart successfully";
+                }else message = ProductUtils.HAVE_EXIST;
+
+                detailsProductView.showMessageAddToFavorite(message);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
