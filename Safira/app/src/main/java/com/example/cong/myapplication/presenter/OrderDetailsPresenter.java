@@ -37,7 +37,7 @@ public class OrderDetailsPresenter {
 //        OrderInFirebase orderInFirebase = new OrderInFirebase();
         cartOrder.setUserId(user.getUid());
         cartOrder.setDateOrder(dateFormat.format(currentTime));
-        if(cartOrder.getType()!= OrderConstants.ORDER_FROM_CART){
+        if(cartOrder.getType()== OrderConstants.ORDER_FROM_CART){
             database.child(user.getUid()).child(StructureFirebase.CART).removeValue();
         }
         database.child(StructureFirebase.ORDER).push().setValue(cartOrder);
