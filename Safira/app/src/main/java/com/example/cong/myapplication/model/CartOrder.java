@@ -8,10 +8,28 @@ import java.util.List;
  */
 
 public class CartOrder implements Serializable{
-    public List<Product> orderDetails;
-    public OrderAddress orderAddress;
-    public String totalPrice;
-    public int type;
+    private List<Product> orderDetails;
+    private OrderAddress orderAddress;
+    private String totalPrice;
+    private int type;
+    private String userId;
+    private String dateOrder;
+
+    public String getDateOrder() {
+        return dateOrder;
+    }
+
+    public void setDateOrder(String dateOrder) {
+        this.dateOrder = dateOrder;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public List<Product> getOrderDetails() {
         return orderDetails;

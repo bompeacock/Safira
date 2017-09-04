@@ -186,7 +186,7 @@ public class DetailsProductPresenter {
                 String message ;
                 if(!ProductUtils.getAllProductCartOnFireBase(dataSnapshot).contains(product)){
                     database.child(StructureFirebase.FAVORITE).push().setValue(product);
-                    message = "Add to cart successfully";
+                    message = "Add to favorite successfully";
                 }else message = ProductUtils.HAVE_EXIST;
 
                 detailsProductView.showMessageAddToFavorite(message);

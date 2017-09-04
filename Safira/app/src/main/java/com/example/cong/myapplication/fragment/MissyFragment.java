@@ -39,6 +39,7 @@ public class MissyFragment extends Fragment implements IGroupProductView{
     @BindView(R.id.layoutCollection)
     LinearLayout layoutCollection;
 
+
 //    @BindView(R.id.fab)
 //    FloatingActionButton fab;
     private int groupId;
@@ -48,6 +49,9 @@ public class MissyFragment extends Fragment implements IGroupProductView{
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
 
     GroupProductPresenter groupProductPresenter;
+
+    public MissyFragment() {
+    }
 
     public MissyFragment(Context context, int groupId) {
         this.groupId = groupId;
